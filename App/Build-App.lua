@@ -5,11 +5,13 @@ project "App"
    targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
 
-   files { "Source/**.h", "Source/**.cpp" }
-
+   files { "Source/**.h", "Source/**.cpp"}
+   defines{"SFML_STATIC"}
    includedirs
    {
       "Source",
+      "Media",
+      "../Core/Vendor/SFML/include",
 
 	  -- Include Core
 	  "../Core/Source"
@@ -17,11 +19,13 @@ project "App"
 
    links
    {
-      "Core"
+      "Core", "SFML"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
    objdir ("../Binaries/Intermediates/" .. OutputDir .. "/%{prj.name}")
+
+ 
 
    filter "system:windows"
        systemversion "latest"

@@ -5,11 +5,20 @@ project "Core"
    targetdir "Binaries/%{cfg.buildcfg}"
    staticruntime "off"
 
+   pchheader "Corepch.h"
+   pchsource "Source/Corepch.cpp"
    files { "Source/**.h", "Source/**.cpp" }
+   defines{"SFML_STATIC"}
 
    includedirs
    {
-      "Source"
+      "Source", "Vendor/SFML/include", "Vendor/SFML/extlibs/libs-msvc-universal/x64"
+   }
+
+   libdirs{"Vendor/SFML/extlibs/libs-msvc-universal/x64"}
+   links{
+        "SFML",
+		"freetype.lib","winmm.lib","opengl32.lib"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
