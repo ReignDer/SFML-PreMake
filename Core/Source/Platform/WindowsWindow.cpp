@@ -25,7 +25,6 @@ namespace Core {
 		//		m_Window->close();
 		//	}
 
-
 		//}
 
 		m_Window->display();

@@ -40,6 +40,7 @@ namespace Core {
 
 	private:
 		static Core* s_Instance;
+
 	};
 
 	//TO BE DEFINED IN CLIENT

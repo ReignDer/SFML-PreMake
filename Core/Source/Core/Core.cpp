@@ -11,7 +11,7 @@ namespace Core {
         s_Instance = this;
 
         m_Window = std::unique_ptr<Window>(Window::Create());
-
+        RenderCommand::setWindow(*m_Window->GetNativeWindow());
  
         /* sf::RenderWindow window(sf::VideoMode(500, 500), "Mathieu Marc I. Pobre");
          window.setFramerateLimit(60.f);*/
@@ -31,6 +31,8 @@ namespace Core {
                 m_Running = false;
                 break;
             }
+            
+            
         }
     }
 
@@ -56,11 +58,7 @@ namespace Core {
             sf::Time time = clock.getElapsedTime();
             sf::Time timestep = time - m_LastFrameTime;
             m_LastFrameTime = time;
-            
 
-
-            RenderCommand::setWindow(*m_Window->GetNativeWindow());
-            
 
             for (Layer* layer : m_LayerStack) {
                 layer->OnUpdate(timestep);

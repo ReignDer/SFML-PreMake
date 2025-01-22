@@ -8,7 +8,7 @@ project "Core"
    pchheader "Corepch.h"
    pchsource "Source/Corepch.cpp"
    files { "Source/**.h", "Source/**.cpp" }
-   defines{"SFML_STATIC"}
+   defines{"SFML_STATIC", "FLAC__NO_DLL", "AL_STATIC"}
 
    includedirs
    {
@@ -18,11 +18,15 @@ project "Core"
    libdirs{"Vendor/SFML/extlibs/libs-msvc-universal/x64"}
    links{
         "SFML",
-		"freetype.lib","winmm.lib","opengl32.lib"
+		"freetype.lib","winmm.lib","opengl32.lib", "flac.lib","openal32.lib",
+        "ogg.lib", "vorbis.lib","vorbisfile.lib", "vorbisenc.lib"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
    objdir ("../Binaries/Intermediates/" .. OutputDir .. "/%{prj.name}")
+
+ 
+
 
    filter "system:windows"
        systemversion "latest"

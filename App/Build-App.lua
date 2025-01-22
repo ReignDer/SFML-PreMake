@@ -6,7 +6,7 @@ project "App"
    staticruntime "off"
 
    files { "Source/**.h", "Source/**.cpp"}
-   defines{"SFML_STATIC"}
+   defines{"SFML_STATIC","FLAC__NO_DLL", "AL_STATIC"}
    includedirs
    {
       "Source",
@@ -25,7 +25,9 @@ project "App"
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
    objdir ("../Binaries/Intermediates/" .. OutputDir .. "/%{prj.name}")
 
- 
+   postbuildcommands{
+    '{COPY} "../Core/Vendor/SFML/extlibs/bin/x64/openal32.dll" "../Binaries/"'.. OutputDir .. '"/%{prj.name}"'
+}
 
    filter "system:windows"
        systemversion "latest"
