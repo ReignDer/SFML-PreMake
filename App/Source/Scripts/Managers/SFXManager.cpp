@@ -1,14 +1,25 @@
 #include "SFXManager.h"
 
-SFXManager* SFXManager::sharedInstance = NULL;
+SFXManager* SFXManager::sharedInstance = nullptr;
 
 SFXManager* SFXManager::getInstance()
 {
-    if (sharedInstance == NULL) {
+    if (sharedInstance == nullptr) {
         sharedInstance = new SFXManager();
     }
     return sharedInstance;
 }
+void SFXManager::deleteResources()
+{
+    for (auto itr = SFX_map.begin(); itr != SFX_map.end();) {
+        auto buffer = itr->second->getBuffer();
+        delete buffer;
+        itr->second->resetBuffer();
+        itr = SFX_map.erase(itr);
+
+    }
+}
+
 
 void SFXManager::loadAll()
 {
@@ -25,13 +36,13 @@ void SFXManager::loadSFX(std::string key, std::string path)
     sf::SoundBuffer* buffer = new sf::SoundBuffer();
     buffer->loadFromFile(path);
 
-    sf::Sound* sound = new sf::Sound();
-    
+    std::unique_ptr<sf::Sound> sound = std::make_unique<sf::Sound>();
 
-    SFX_map[key] = sound;
+    SFX_map[key] = std::move(sound);
     SFX_map[key]->setBuffer(*buffer);
 
     std::cout<<key<<std::endl;
+
 }
 
 void SFXManager::play(std::string key)
@@ -55,3 +66,7 @@ void SFXManager::play(std::string key)
 
     
 }
+
+
+
+

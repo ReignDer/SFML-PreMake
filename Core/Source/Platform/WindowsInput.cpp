@@ -7,16 +7,18 @@ namespace Core {
 
 	bool WindowsInput::KeyPressedImpl(sf::Keyboard::Key keyCode)
 	{
-		auto window = static_cast<sf::RenderWindow*>(Core::Get().GetWindow().GetNativeWindow()); 
+		//auto window = static_cast<sf::RenderWindow*>(Core::Get().GetWindow().GetNativeWindow()); 
 
 		auto state = sf::Keyboard::isKeyPressed(keyCode);
 
 		return state;
 	}
 
-	bool WindowsInput::MouseButtonPressedImpl(int button)
+	bool WindowsInput::MouseButtonPressedImpl(sf::Mouse::Button button)
 	{
-		return false;
+
+		auto state = sf::Mouse::isButtonPressed(button);
+		return state;
 	}
 
 	std::pair<float, float> WindowsInput::GetMousePositionImpl()

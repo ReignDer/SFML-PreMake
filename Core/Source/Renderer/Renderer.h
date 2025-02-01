@@ -9,7 +9,7 @@ namespace Core {
 		static void StartScene();
 		static void EndScene();
 		static void Enter(const sf::Drawable& target);
-
+		static void Enter(const sf::Drawable& target, const sf::RenderStates& renderState);
 	};
 }
 

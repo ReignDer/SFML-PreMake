@@ -1,6 +1,8 @@
 # Directories
 .vs/
 Binaries/
+EXE/
+Build/
 
 # Files
 *.vcxproj

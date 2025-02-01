@@ -8,7 +8,7 @@ namespace Core {
 	{
 	protected:
 		virtual bool KeyPressedImpl(sf::Keyboard::Key keyCode) override;
-		virtual bool MouseButtonPressedImpl(int button) override;
+		virtual bool MouseButtonPressedImpl(sf::Mouse::Button button) override;
 		virtual std::pair<float, float> GetMousePositionImpl() override;
 		virtual float GetMouseXImpl() override;
 		virtual float GetMouseYImpl() override;

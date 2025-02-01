@@ -2,22 +2,55 @@
 #include "Entity.h"
 
 namespace Core {
-	Entity::Entity()
+	Entity::Entity(const std::string& name = "")
 	{
+		this->name = name;
 	}
-	Entity::~Entity()
+
+
+	void Entity::attachChild(Entity* childEntity)
 	{
+		m_EntityChildList.emplace_back(childEntity);
+		childEntity->initialize();
+	}
+
+	void Entity::detachChild(Entity* childEntity)
+	{
+		int index = -1;
+		for (int i = 0; i < m_EntityChildList.size(); i++) {
+			if (m_EntityChildList[i] == childEntity) {
+				index = i;
+				break;
+			}
+		}
+
+		if (index != -1) {
+			m_EntityChildList.erase(m_EntityChildList.begin() + index);
+			m_EntityChildList.shrink_to_fit();
+		}
 
 	}
 
-	void Entity::SetTexture(const sf::Texture& texture)
+	void Entity::setPosition(float x, float y)
 	{
-		m_Texture = texture;
-		m_Sprite.setTexture(m_Texture);
+		m_Transformable.setPosition(x, y);
 	}
 
-	sf::Sprite* Entity::GetSprite()
+
+	void Entity::draw(sf::RenderStates renderState)
 	{
-		return &m_Sprite;
+		renderState.transform = renderState.transform * m_Transformable.getTransform();
+
+		if(m_Enabled)
+			Renderer::Enter(*m_Sprite, renderState);
+
+		for (Entity* entityChild : m_EntityChildList) {
+			entityChild->draw(renderState);
+		}
+	}
+
+	void Entity::setEnabled(bool enabled)
+	{
+		m_Enabled = enabled;
 	}
 }

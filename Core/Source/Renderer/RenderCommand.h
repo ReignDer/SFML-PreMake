@@ -15,6 +15,9 @@ namespace Core {
 		inline static void Draw(const sf::Drawable& render) {
 			s_SFMLRenderer->Draw(*m_Window,render);
 		}
+		inline static void Draw(const sf::Drawable& render, const sf::RenderStates& renderState) {
+			s_SFMLRenderer->Draw(*m_Window, render, renderState);
+		}
 	private:
 		static SFMLRenderer* s_SFMLRenderer;
 		static sf::RenderWindow* m_Window;

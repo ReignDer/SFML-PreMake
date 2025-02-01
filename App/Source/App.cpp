@@ -8,8 +8,7 @@ class App : public Core::Core{
 public:
 	App() {
 		std::cout << "Application";	
-		PushLayer(new GameLayer());
-		
+		PushLayer(new GameLayer());		
 	}
 
 	~App() {

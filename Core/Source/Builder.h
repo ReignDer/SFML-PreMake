@@ -6,6 +6,7 @@
 #include "Core/Layer.h"
 
 #include "Core/Input.h"
+#include "Scene/Scene.h"
 #include "Scene/Entity.h"
 
 #include "Renderer/Renderer.h"

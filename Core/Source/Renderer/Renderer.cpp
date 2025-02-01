@@ -20,4 +20,9 @@ namespace Core {
 		RenderCommand::Draw(target);
 	}
 
+	void Renderer::Enter(const sf::Drawable& target, const sf::RenderStates& renderState)
+	{
+		RenderCommand::Draw(target, renderState);
+	}
+
 }
