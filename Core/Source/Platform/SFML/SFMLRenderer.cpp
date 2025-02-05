@@ -14,5 +14,6 @@ namespace Core{
 	void SFMLRenderer::Draw(sf::RenderWindow& window, const sf::Drawable& render, const sf::RenderStates& renderState)
 	{
 		window.draw(render, renderState);
+
 	}
 }

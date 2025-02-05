@@ -6,7 +6,7 @@ class AirplaneSupport : public Core::Entity
 public:
 	AirplaneSupport(std::string name);
 	void initialize() override;
-	virtual void update(sf::Time timestep) override;
+	virtual void perform();
 private:
 	const float SPEED_MULTIPLIER = 70.f;
 	bool m_Reverse = false;

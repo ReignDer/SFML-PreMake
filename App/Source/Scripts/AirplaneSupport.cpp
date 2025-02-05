@@ -12,56 +12,14 @@ void AirplaneSupport::initialize()
 	m_Sprite->setOrigin((float)textureSize.x / 2, (float)textureSize.y / 2);
 	m_Sprite->setPosition(250, 250);
 	m_Sprite->setRotation(0.0f);
+
+	Core::RendererComponent* renderer = new Core::RendererComponent("AirplaneSupportSprite");
+	renderer->assignDrawable(*m_Sprite);
+	this->attachComponent(renderer);
 }
 
-
-void AirplaneSupport::update(sf::Time timestep)
+void AirplaneSupport::perform()
 {
-	sf::Vector2f offset(0,0);
-	sf::Vector2f localPos = m_Transformable.getPosition();
-
-
-	if (name == "support1") {
-		if (localPos.x > -50 && !m_Reverse) {
-			offset.x -= SPEED_MULTIPLIER;
-
-		}
-
-		if (localPos.x < 50 && m_Reverse) {
-			offset.x += SPEED_MULTIPLIER;
-
-		}
-
-		if (localPos.x < -50 && !m_Reverse) {
-			m_Reverse = true;
-		}
-
-		if (localPos.x > 50 && m_Reverse)
-			m_Reverse = false;
-	}
-	else {
-
-
-
-		if (localPos.x < 50 && !m_Reverse) {
-			offset.x += SPEED_MULTIPLIER;
-
-		}
-
-		if (localPos.x > -50 && m_Reverse)
-		{
-			offset.x -= SPEED_MULTIPLIER;
-		}
-
-		if (localPos.x > 50 && !m_Reverse) {
-			m_Reverse = true;
-		}
-
-		if (localPos.x < -50 && m_Reverse)
-			m_Reverse = false;
-	}
-
-
-	m_Transformable.move(offset * timestep.asSeconds());
-	
 }
+
+

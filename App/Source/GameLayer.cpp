@@ -55,7 +55,7 @@ void GameLayer::OnRemove()
 
 void GameLayer::OnUpdate(sf::Time timestep)
 {
-
+	
 	Update(timestep);
 
 	Render();
@@ -63,6 +63,8 @@ void GameLayer::OnUpdate(sf::Time timestep)
 
 void GameLayer::OnEvent(sf::Event& e)
 {
+	//PROBLEM
+	//EntityManager::getInstance()->processInput(e);
 	switch (e.type) {
 
 	//case sf::Event::MouseButtonPressed:
@@ -89,6 +91,8 @@ void GameLayer::Update(sf::Time timestep)
 
 	//Update scene
 	m_ActiveScene->OnUpdate(timestep);
+
+	//PROBLEM
 	EntityManager::getInstance()->update(timestep);
 }
 

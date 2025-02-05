@@ -11,6 +11,7 @@ public:
 	std::vector<Core::Entity*> getAllEntities();
 	int activeObjects();
 	void update(sf::Time timestep);
+	void processInput(sf::Event& event);
 	void render();
 
 	void addEntity(Core::Entity* entity);

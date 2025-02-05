@@ -34,7 +34,17 @@ int EntityManager::activeObjects()
 void EntityManager::update(sf::Time timestep)
 {
 	for (int i = 0; i < m_EntitiesList.size();i++) {
+		
 		m_EntitiesList[i]->update(timestep);
+	}
+}
+
+void EntityManager::processInput(sf::Event& event)
+{
+
+	for (int i = 0; i < m_EntitiesList.size(); i++) {
+
+		m_EntitiesList[i]->processInput(event);
 	}
 }
 

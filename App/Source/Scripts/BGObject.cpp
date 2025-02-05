@@ -11,16 +11,14 @@ void BGObject::initialize()
 	sf::Vector2u textureSize = m_Sprite->getTexture()->getSize();
 
 	m_Sprite->setScale(2,2);
-	m_Sprite->setPosition(0, -240);
+	m_Sprite->setPosition(0, -100);
+
+	BGMovement* bgMovement = new BGMovement("BGMovement");
+	attachComponent(bgMovement);
+
+	Core::RendererComponent* renderer = new Core::RendererComponent("BGObjectSprite");
+	renderer->assignDrawable(*m_Sprite);
+	attachComponent(renderer);
 }
 
-void BGObject::update(sf::Time timestep)
-{
-	sf::Vector2f offset(0.0f, 0.0f);
-	offset.y += SPEED_MULTIPLIER;
-	m_Sprite->move(offset * timestep.asSeconds());
-	sf::Vector2f localPos = m_Sprite->getPosition();
 
-	if (localPos.y * timestep.asSeconds() > 0.f)
-		m_Sprite->setPosition(0, -240);
-}
