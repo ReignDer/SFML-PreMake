@@ -15,6 +15,7 @@ void TextureManager::loadAll()
     loadTexture("desert_bg", "Media/Desert.png");
     loadTexture("eagle", "Media/Eagle.png");
     loadTexture("raptor", "Media/Raptor.png");
+    loadTexture("avenger", "Media/Avenger.png");
 }
 
 void TextureManager::loadTexture(const std::string& key, const std::string& path)

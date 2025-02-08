@@ -6,6 +6,8 @@
 #include "Scripts/Player.h"
 #include "Scripts/BGObject.h"
 #include "Scripts/AirplaneSupport.h"
+#include "Scripts/EnemyAirplane.h"
+#include "Scripts/Components/EnemySwarmHandler.h"
 
 class GameLayer : public Core::Layer
 {

@@ -53,11 +53,13 @@ namespace Core {
 
         sf::Clock clock;
         sf::Event event;
+
         while (m_Running) {
 
             sf::Time time = clock.getElapsedTime();
             sf::Time timestep = time - m_LastFrameTime;
             m_LastFrameTime = time;
+
 
 
             for (Layer* layer : m_LayerStack) {

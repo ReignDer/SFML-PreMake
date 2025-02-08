@@ -22,7 +22,7 @@ namespace Core{
 
 		uint32_t getEntityID() { return m_EntityHandle; }
 		uint32_t setEntityID(uint32_t entityHandle) { m_EntityHandle = entityHandle; }
-		int getComponentListSize() { return m_ComponentList.size(); }
+		int getComponentListSize() { return (int)m_ComponentList.size(); }
 
 		void attachChild(Entity* childEntity);
 		void detachChild(Entity* childEntity);
@@ -52,6 +52,7 @@ namespace Core{
 	
 	public:
 		void setEnabled(bool m_Enabled);
+		bool isEnabled() { return m_Enabled; }
 	protected:
 		std::unique_ptr<sf::Texture> m_Texture;
 		std::unique_ptr<sf::Sprite> m_Sprite;

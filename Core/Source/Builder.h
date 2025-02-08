@@ -8,6 +8,7 @@
 #include "Core/Input.h"
 #include "Scene/Scene.h"
 #include "Scene/Entity.h"
+#include "Scene/EmptyEntity.h"
 #include "Scene/Component.h"
 
 #include "Renderer/Renderer.h"

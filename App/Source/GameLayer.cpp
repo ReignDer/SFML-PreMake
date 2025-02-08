@@ -15,6 +15,7 @@ GameLayer::~GameLayer()
 
 void GameLayer::OnAttach()
 {
+	srand(time(nullptr));
 	TextureManager::getInstance()->loadAll();
 
 	m_ActiveScene = std::make_shared<Core::Scene>();
@@ -33,6 +34,10 @@ void GameLayer::OnAttach()
 	player->attachChild(support2);
 	support2->setPosition(-50, 100);
 
+	Core::EmptyEntity* enemiesManager = new Core::EmptyEntity("EnemiesManager");
+	EnemySwarmHandler* swarmHandler = new EnemySwarmHandler(200, "swarmHandler", enemiesManager);
+	enemiesManager->attachComponent(swarmHandler);
+	EntityManager::getInstance()->addEntity(enemiesManager);
 
 	if (!m_Font.loadFromFile("Media/Sansation.ttf")) {
 		LOG("Cannot open File");
@@ -47,6 +52,7 @@ void GameLayer::OnAttach()
 	m_TextFramePerSeconds.setFillColor(sf::Color::White);
 
 	SFXManager::getInstance()->loadAll();
+
 }
 
 void GameLayer::OnRemove()
@@ -55,7 +61,7 @@ void GameLayer::OnRemove()
 
 void GameLayer::OnUpdate(sf::Time timestep)
 {
-	
+
 	Update(timestep);
 
 	Render();
@@ -64,7 +70,7 @@ void GameLayer::OnUpdate(sf::Time timestep)
 void GameLayer::OnEvent(sf::Event& e)
 {
 	//PROBLEM
-	//EntityManager::getInstance()->processInput(e);
+	EntityManager::getInstance()->processInput(e);
 	switch (e.type) {
 
 	//case sf::Event::MouseButtonPressed:
@@ -76,6 +82,9 @@ void GameLayer::OnEvent(sf::Event& e)
 	//	break;
 	case sf::Event::KeyPressed:
 		playSFX();
+		/*if (Core::Input::IsKeyPressed(sf::Keyboard::Space)) {
+				EntityManager::getInstance()->addEntity(new EnemyAirplane("Avenger"));
+		}*/
 		break;
 	}
 	

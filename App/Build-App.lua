@@ -26,7 +26,8 @@ project "App"
    objdir ("../Binaries/Intermediates/" .. OutputDir .. "/%{prj.name}")
 
    postbuildcommands{
-    '{COPY} "../Core/Vendor/SFML/extlibs/bin/x64/openal32.dll" "../Binaries/"'.. OutputDir .. '"/%{prj.name}"'
+    '{COPY} "../Core/Vendor/SFML/extlibs/bin/x64/openal32.dll" "../Binaries/"'.. OutputDir .. '"/%{prj.name}"',
+    '{COPYDIR} "Media" "../Binaries/"'.. OutputDir .. '"/%{prj.name}/Media"'
 }
 
    filter "system:windows"

@@ -20,4 +20,6 @@ void BGMovement::perform()
 
 	if (localPos.y * timestep.asSeconds() > 1.5f)
 		bgTransformable->setPosition(0, -100);
+
+
 }

@@ -10,5 +10,6 @@ public:
 	virtual void perform() override;
 private:
 	const float SPEED_MULTIPLIER = 50.f;
+
 };
 

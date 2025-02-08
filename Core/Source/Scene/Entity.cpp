@@ -10,6 +10,8 @@ namespace Core {
 
 	void Entity::update(sf::Time timestep)
 	{
+		if (!isEnabled()) return;
+
 		std::vector<AbstractComponent*> componentList = getComponentsByType(AbstractComponent::ComponentType::Script);
 		
 		for (int i = 0; i < componentList.size(); i++) {
@@ -25,6 +27,7 @@ namespace Core {
 
 	void Entity::processInput(sf::Event& event)
 	{
+		if (!isEnabled()) return;
 
 		const auto& componentList = getComponentsByType(AbstractComponent::ComponentType::Input);
 
@@ -41,6 +44,7 @@ namespace Core {
 
 	void Entity::draw(sf::RenderStates renderState)
 	{
+		if (!isEnabled()) return;
 
 		renderState.transform = renderState.transform * m_Transformable.getTransform();
 
