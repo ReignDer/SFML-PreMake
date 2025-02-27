@@ -10,7 +10,7 @@ EnemyAirplane::~EnemyAirplane()
 
 void EnemyAirplane::initialize()
 {
-	m_Sprite = std::make_unique<sf::Sprite>();
+	m_Sprite = std::make_shared<sf::Sprite>();
 	m_Sprite->setTexture(*TextureManager::getInstance()->getTexture("avenger"));
 
 	sf::Vector2u textureSize = m_Sprite->getTexture()->getSize();
@@ -20,11 +20,11 @@ void EnemyAirplane::initialize()
 	this->getTransformable()->move(rand() % SPAWN_RANGE - rand()%SPAWN_RANGE, 0);
 	this->getTransformable()->setRotation(180);
 
-	Core::RendererComponent* renderer = new Core::RendererComponent("EnemyAirplane");
-	renderer->assignDrawable(*m_Sprite);
+	auto renderer = new Core::RendererComponent("EnemyAirplane");
+	renderer->assignDrawable(m_Sprite);
 	attachComponent(renderer);
 
-	EnemyBehaviour* behaviour = new EnemyBehaviour("AvengerBehaviour");
+	auto behaviour = new EnemyBehaviour("AvengerBehaviour");
 	attachComponent(behaviour);
 	behaviour->configure(1.0f);
 }
@@ -36,7 +36,7 @@ void EnemyAirplane::OnRelease()
 
 void EnemyAirplane::OnActivate()
 {
-	EnemyBehaviour* behaviour = (EnemyBehaviour*)findComponentByName("AvengerBehaviour");
+	auto behaviour = (EnemyBehaviour*)findComponentByName("AvengerBehaviour");
 	behaviour->reset();
 
 	setPosition(Core::Core::Get().GetWindow().GetWidth() / 2, -30);

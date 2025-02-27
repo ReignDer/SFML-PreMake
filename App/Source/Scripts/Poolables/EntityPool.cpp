@@ -7,6 +7,7 @@ EntityPool::EntityPool(const std::string& tag, EntityPoolable* poolable, int poo
 
 EntityPool::~EntityPool()
 {
+	LOG("DELETED POOLERS");
 	delete objectCopy;
 	objectCopy = nullptr;
 	parent = nullptr;
@@ -21,10 +22,10 @@ void EntityPool::initialize()
 			parent->attachChild(poolable);
 		}
 		else
-			EntityManager::getInstance()->addEntity(poolable);
+			Core::EntityManager::getInstance()->addEntity(poolable);
 
 		poolable->setEnabled(false);
-		LOG("ADDED POOLABLE");
+		//LOG("ADDED POOLABLE");
 		availableObjects.emplace_back(poolable);
 	}
 }
@@ -42,7 +43,7 @@ EntityPoolable* EntityPool::requestPoolable()
 		usedObjects.emplace_back(poolable);
 
 		setEnabled(poolable, true);
-		LOG("POOLABLE REQUESTED");
+		//LOG("POOLABLE REQUESTED");
 		return poolable;
 		
 	}
@@ -71,7 +72,7 @@ void EntityPool::releasePoolable(EntityPoolable* poolableObject)
 			usedObjects.erase(usedObjects.begin() + i);
 			availableObjects.emplace_back(poolableObject);
 			setEnabled(poolableObject, false);
-			LOG("POOLABLE RELEASED");
+			//LOG("POOLABLE RELEASED");
 		}
 	}
 }

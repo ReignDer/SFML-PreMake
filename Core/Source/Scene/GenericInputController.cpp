@@ -13,14 +13,11 @@ namespace Core {
 		AbstractComponent::~AbstractComponent();
 	}
 
-	void GenericInputController::perform()
+
+	void GenericInputController::assignEvent(const sf::Event& event)
 	{
-
-	}
-
-	void GenericInputController::assignEvent(sf::Event event)
-	{
-
-		event = event;
+		//LOG(event.type);
+		m_Event = event;
+		
 	}
 }

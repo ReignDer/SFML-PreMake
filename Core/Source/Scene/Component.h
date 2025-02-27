@@ -33,11 +33,11 @@ namespace Core {
 		virtual ~RendererComponent();
 		virtual void perform();
 
-		void assignDrawable(const sf::Drawable& drawable);
+		void assignDrawable(std::shared_ptr<sf::Drawable> drawable);
 		void assignRenderState(const sf::RenderStates& renderState);
 
 	private:
-		sf::Drawable* m_Drawable;
+		std::shared_ptr<sf::Drawable> m_Drawable;
 		const sf::RenderStates* m_RenderStates;
 	};
 }

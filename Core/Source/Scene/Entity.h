@@ -9,10 +9,10 @@ namespace Core{
 	{
 	public:
 		Entity(const std::string& name);
-		virtual ~Entity() = default;
+		virtual ~Entity();
 		virtual void initialize() = 0;
-		virtual void update(sf::Time timestep);
-		virtual void processInput(sf::Event& event);
+		virtual void update(const sf::Time& timestep);
+		virtual void processInput(const sf::Event& event);
 		virtual void draw(sf::RenderStates renderState);
 
 		std::string getName() { return name; }
@@ -44,19 +44,25 @@ namespace Core{
 		//	return;//
 		//}
 
-		void attachComponent(AbstractComponent* component);
-		void dettachComponent(AbstractComponent* component);
-		AbstractComponent* findComponentByName(const std::string& name);
-		AbstractComponent* findComponentOfType(AbstractComponent::ComponentType type, const std::string& name);
+		void attachComponent(AbstractComponent*  component);
+		void dettachComponent(AbstractComponent*  component);
+		AbstractComponent*  findComponentByName(const std::string& name);
+		AbstractComponent*  findComponentOfType(AbstractComponent::ComponentType type, const std::string& name);
 		std::vector<AbstractComponent*> getComponentsByType(AbstractComponent::ComponentType type);
 	
 	public:
+		Entity* getParent() { return m_Parent; }
+
 		void setEnabled(bool m_Enabled);
 		bool isEnabled() { return m_Enabled; }
 	protected:
+		void setParent(Entity* entity) { m_Parent = entity; }
+
+	protected:
 		std::unique_ptr<sf::Texture> m_Texture;
-		std::unique_ptr<sf::Sprite> m_Sprite;
+		std::shared_ptr<sf::Sprite> m_Sprite;
 		std::string name;
+		Entity* m_Parent;
 		bool m_Enabled = true;
 		
 		sf::Transformable m_Transformable;

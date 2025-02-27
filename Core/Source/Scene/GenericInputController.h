@@ -7,9 +7,9 @@ namespace Core {
 		GenericInputController(const std::string& name);
 		virtual ~GenericInputController();
 
-		virtual void perform();
-		void assignEvent(sf::Event event);
+		virtual void perform() = 0;
+		void assignEvent(const sf::Event& event);
 	protected:
-		sf::Event event;
+		sf::Event m_Event;
 	};
 }

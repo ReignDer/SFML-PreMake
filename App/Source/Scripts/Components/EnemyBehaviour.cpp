@@ -19,7 +19,6 @@ void EnemyBehaviour::perform()
 	m_Ticks += timestep.asSeconds();
 
 
-
 	sf::Transformable* transform = getOwner()->getTransformable();
 
 

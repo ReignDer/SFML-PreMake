@@ -6,6 +6,8 @@ class TextureManager : private sf::NonCopyable
 public:
 	static TextureManager* getInstance();
 	void loadAll();
+	void loadTitle();
+	void loadGame();
     std::shared_ptr<sf::Texture> getTexture(const std::string& key);
 	void deleteResources();
 

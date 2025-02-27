@@ -22,7 +22,7 @@ void ObjectPoolHolder::registerObjectPool(EntityPool* pool)
 void ObjectPoolHolder::unregisterObjectPool(EntityPool* pool)
 {
 	poolMap.erase(pool->getTag());
-	delete pool;
+
 }
 
 ObjectPoolHolder::ObjectPoolHolder()

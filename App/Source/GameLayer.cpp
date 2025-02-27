@@ -1,5 +1,5 @@
 #include "GameLayer.h"
-#define LOG(x) std::cout<< x << std::endl
+
 GameLayer::GameLayer() : Layer("Layer") 
 {
 	
@@ -10,34 +10,27 @@ GameLayer::~GameLayer()
 	SFXManager::getInstance()->deleteResources();
 	delete SFXManager::getInstance();
 	delete TextureManager::getInstance();
-	delete EntityManager::getInstance();
+	delete Core::EntityManager::getInstance();
+	delete FontManager::getInstance();
+	delete ObjectPoolHolder::getInstance();
 }
 
 void GameLayer::OnAttach()
 {
 	srand(time(nullptr));
-	TextureManager::getInstance()->loadAll();
 
 	m_ActiveScene = std::make_shared<Core::Scene>();
 
-	BGObject* bgObject = new BGObject("BGObject");
-	EntityManager::getInstance()->addEntity(bgObject);
+	Core::SceneManager::getInstance()->registerScene(new GameLayerScene);
+	Core::SceneManager::getInstance()->registerScene(new TitleScene);
+	Core::SceneManager::getInstance()->registerScene(new MainMenuScene);
+	Core::SceneManager::getInstance()->loadScene(Core::SceneManager::TITLE_SCENE_NAME);
 
-	Player* player = new Player("Player");
-	EntityManager::getInstance()->addEntity(player);
 
-	AirplaneSupport* support1 = new AirplaneSupport("support1");
-	player->attachChild(support1);
-	support1->setPosition(50, 100);
 
-	AirplaneSupport* support2 = new AirplaneSupport("support2");
-	player->attachChild(support2);
-	support2->setPosition(-50, 100);
+	//Core::SceneManager::getInstance()->loadScene(Core::SceneManager::MAIN_MENU_SCENE_NAME);
+	
 
-	Core::EmptyEntity* enemiesManager = new Core::EmptyEntity("EnemiesManager");
-	EnemySwarmHandler* swarmHandler = new EnemySwarmHandler(200, "swarmHandler", enemiesManager);
-	enemiesManager->attachComponent(swarmHandler);
-	EntityManager::getInstance()->addEntity(enemiesManager);
 
 	if (!m_Font.loadFromFile("Media/Sansation.ttf")) {
 		LOG("Cannot open File");
@@ -61,16 +54,17 @@ void GameLayer::OnRemove()
 
 void GameLayer::OnUpdate(sf::Time timestep)
 {
-
 	Update(timestep);
 
+
 	Render();
+
+	Core::SceneManager::getInstance()->checkLoadScene();
 }
 
 void GameLayer::OnEvent(sf::Event& e)
 {
 	//PROBLEM
-	EntityManager::getInstance()->processInput(e);
 	switch (e.type) {
 
 	//case sf::Event::MouseButtonPressed:
@@ -85,6 +79,9 @@ void GameLayer::OnEvent(sf::Event& e)
 		/*if (Core::Input::IsKeyPressed(sf::Keyboard::Space)) {
 				EntityManager::getInstance()->addEntity(new EnemyAirplane("Avenger"));
 		}*/
+		break;
+	default:
+		Core::EntityManager::getInstance()->processInput(e);
 		break;
 	}
 	
@@ -102,7 +99,11 @@ void GameLayer::Update(sf::Time timestep)
 	m_ActiveScene->OnUpdate(timestep);
 
 	//PROBLEM
-	EntityManager::getInstance()->update(timestep);
+	if (!Core::Core::Get().isPaused())
+		Core::EntityManager::getInstance()->update(timestep);
+	else
+		Core::EntityManager::getInstance()->update(sf::Time::Zero);
+	
 }
 
 void GameLayer::handleMouseInputs(sf::Mouse::Button button, bool isPressed)
@@ -118,7 +119,7 @@ void GameLayer::Render()
 {
 	Core::RenderCommand::Clear();
 	Core::Renderer::StartScene();
-	EntityManager::getInstance()->render();
+	Core::EntityManager::getInstance()->render();
 	Core::Renderer::Enter(m_TextTimeUpdate);
 	Core::Renderer::Enter(m_TextFramePerSeconds);
 	Core::Renderer::EndScene();

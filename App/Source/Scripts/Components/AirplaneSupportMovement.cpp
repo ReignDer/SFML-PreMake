@@ -9,7 +9,7 @@ void AirplaneSupportMovement::perform()
 	Player* player = (Player*)this->getOwner();
 
 	//LOG(player->getComponentListSize());
-	PlayerInputController* input = (PlayerInputController*)(player->getComponentsByType(ComponentType::Input)[0]);
+	auto input = (PlayerInputController*)player->getComponentsByType(ComponentType::Input)[0];
 	sf::Transformable* playerTransformable = player->getTransformable();
 
 	if (playerTransformable == nullptr || input == nullptr) {

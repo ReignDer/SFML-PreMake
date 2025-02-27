@@ -7,6 +7,7 @@
 #include "Event/EventDispatcher.h"
 #include "Renderer/Renderer.h"
 #include "Renderer/RenderCommand.h"
+#include "Scene/SceneManager.h"
 
 namespace Core {
 #define BIND_EVENT_FN(x) std::bind(&x, this, std::placeholders::_1)
@@ -25,6 +26,13 @@ namespace Core {
 		inline Window& GetWindow() { return *m_Window; }
 		inline static Core& Get() { return *s_Instance; }
 
+		enum CoreState{ Running = 0, Paused = 1 };
+
+		void ApplicationQuit();
+		void PauseApplication();
+		void ResumeApplication();
+		bool isPaused();
+
 	private:
 		bool OnWindowClosedEvent(sf::Event& e);
 
@@ -37,6 +45,7 @@ namespace Core {
 		sf::Mouse mousePos;
 
 		bool m_Running = true;
+		CoreState state;
 
 	private:
 		static Core* s_Instance;

@@ -1,13 +1,7 @@
 #pragma once
 #include "Builder.h"
-#include "Scripts/Managers/TextureManager.h"
-#include "Scripts/Managers/EntityManager.h"
-#include "Scripts/Managers/SFXManager.h"
-#include "Scripts/Player.h"
-#include "Scripts/BGObject.h"
-#include "Scripts/AirplaneSupport.h"
-#include "Scripts/EnemyAirplane.h"
-#include "Scripts/Components/EnemySwarmHandler.h"
+
+#include "GameApp.h"
 
 class GameLayer : public Core::Layer
 {

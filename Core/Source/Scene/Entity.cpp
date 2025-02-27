@@ -5,10 +5,27 @@ namespace Core {
 	Entity::Entity(const std::string& name = "")
 	{
 		this->name = name;
+		m_Parent = nullptr;
+	}
+
+	Entity::~Entity()
+	{
+		for (auto& components : m_ComponentList) {
+			LOG(components->getName());
+			delete components;
+		}
+		m_ComponentList.clear();
+		for (auto& child : m_EntityChildList) {
+			LOG(child->getName());
+			delete child;
+		}
+		
+		m_EntityChildList.clear();
 	}
 
 
-	void Entity::update(sf::Time timestep)
+
+	void Entity::update(const sf::Time& timestep)
 	{
 		if (!isEnabled()) return;
 
@@ -25,14 +42,14 @@ namespace Core {
 		}
 	}
 
-	void Entity::processInput(sf::Event& event)
+	void Entity::processInput(const sf::Event& event)
 	{
 		if (!isEnabled()) return;
 
 		const auto& componentList = getComponentsByType(AbstractComponent::ComponentType::Input);
 
 		for (int i = 0; i < componentList.size(); i++) {
-			((GenericInputController*)componentList[i])->assignEvent(event);
+			((GenericInputController*)(componentList[i]))->assignEvent(event);
 			componentList[i]->perform();
 
 		}
@@ -47,10 +64,12 @@ namespace Core {
 		if (!isEnabled()) return;
 
 		renderState.transform = renderState.transform * m_Transformable.getTransform();
+		
+		//std::shared_ptr<sf::RenderStates> sharedRenderState = std::make_shared<sf::RenderStates>(renderState);
 
 		const auto& componentList = getComponentsByType(AbstractComponent::ComponentType::Renderer);
 		
-		for (auto& component : m_ComponentList) {
+		for (auto& component : componentList) {
 			RendererComponent* renderer = (RendererComponent*)component;
 			renderer->assignRenderState(renderState);
 			renderer->perform();
@@ -66,6 +85,7 @@ namespace Core {
 	void Entity::attachChild(Entity* childEntity)
 	{
 		m_EntityChildList.emplace_back(childEntity);
+		childEntity->setParent(this);
 		childEntity->initialize();
 	}
 
@@ -97,11 +117,12 @@ namespace Core {
 	void Entity::attachComponent(AbstractComponent* component)
 	{
 		m_ComponentList.emplace_back(component);
+		
 		component->attachOwner(this);
 		
 	}
 
-	void Entity::dettachComponent(AbstractComponent* component)
+	void Entity::dettachComponent(AbstractComponent*  component)
 	{
 		int index = -1;
 

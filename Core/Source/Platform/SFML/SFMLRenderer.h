@@ -6,6 +6,7 @@ namespace Core {
 	{
 	public:
 		void Clear(sf::RenderWindow& window);
+		void TransparentClear(sf::RenderWindow& window);
 
 		void Draw(sf::RenderWindow& window, const sf::Drawable& render);
 		void Draw(sf::RenderWindow& window, const sf::Drawable& render, const sf::RenderStates& renderState);

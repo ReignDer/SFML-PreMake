@@ -12,6 +12,9 @@ namespace Core {
 		inline static void Clear() {
 			s_SFMLRenderer->Clear(*m_Window);
 		}
+		inline static void TransparentClear() {
+			s_SFMLRenderer->TransparentClear(*m_Window);
+		}
 		inline static void Draw(const sf::Drawable& render) {
 			s_SFMLRenderer->Draw(*m_Window,render);
 		}

@@ -18,7 +18,7 @@ namespace Core {
     }
 
     Core::~Core() {
-
+       
     }
 
     void Core::OnUpdate(sf::Event& e)
@@ -45,6 +45,26 @@ namespace Core {
     void Core::PushOverlay(Layer* overlay)
     {
         m_LayerStack.PushOverlay(overlay);
+    }
+
+    void Core::ApplicationQuit()
+    {
+        m_Running = false;
+    }
+
+    void Core::PauseApplication()
+    {
+        state = Paused;
+    }
+
+    void Core::ResumeApplication()
+    {
+        state = Running;
+    }
+
+    bool Core::isPaused()
+    {
+        return state == Paused;
     }
 
 
@@ -75,6 +95,8 @@ namespace Core {
 
             //TODO: PUT POLLING HERE
             m_Window->OnUpdate();
+
+            
            
             /*m_Window->clear();
             m_Window->draw(shape);

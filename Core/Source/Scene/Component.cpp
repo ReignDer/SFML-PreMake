@@ -37,10 +37,7 @@ namespace Core {
 	}
 	RendererComponent::~RendererComponent()
 	{
-		if (m_Drawable != nullptr)
-			delete m_Drawable;
-		if (m_RenderStates != nullptr)
-			delete m_RenderStates;
+
 		AbstractComponent::~AbstractComponent();
 	}
 
@@ -49,9 +46,9 @@ namespace Core {
 		Renderer::Enter(*m_Drawable, *m_RenderStates);
 	}
 
-	void RendererComponent::assignDrawable(const sf::Drawable& drawable)
+	void RendererComponent::assignDrawable(std::shared_ptr<sf::Drawable> drawable)
 	{
-		m_Drawable = (sf::Drawable*)&drawable;
+		m_Drawable = drawable;
 	}
 
 	void RendererComponent::assignRenderState(const sf::RenderStates& renderState)

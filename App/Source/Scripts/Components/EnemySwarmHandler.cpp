@@ -15,7 +15,7 @@ EnemySwarmHandler::~EnemySwarmHandler()
 
 void EnemySwarmHandler::perform()
 {
-	EntityPool* enemyPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG);
+	auto enemyPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG);
 	ticks += timestep.asSeconds();
 
 	if (ticks > SPAWN_INTERVAL) {

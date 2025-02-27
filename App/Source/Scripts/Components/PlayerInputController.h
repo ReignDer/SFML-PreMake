@@ -1,6 +1,6 @@
 #pragma once
 #include "Builder.h"
-#include "Scene/GenericInputController.h"
+
 class PlayerInputController : public Core::GenericInputController
 {
 public:

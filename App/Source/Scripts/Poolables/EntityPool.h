@@ -1,7 +1,7 @@
 #pragma once
 #include "Builder.h"
 #include "EntityPoolable.h"
-#include "Scripts/Managers/EntityManager.h"
+
 class EntityPool
 {
 public:
