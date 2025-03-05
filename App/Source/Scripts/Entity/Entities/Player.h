@@ -1,6 +1,6 @@
 #pragma once
 #include "Builder.h"
-#include "Managers/TextureManager.h"
+#include "Scripts/Managers/TextureManager.h"
 #include "Scripts/Components/AirplaneSupportMovement.h"
 #include "Scripts/Components/PlayerInputController.h"
 

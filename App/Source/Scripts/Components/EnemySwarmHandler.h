@@ -2,7 +2,7 @@
 #include "Builder.h"
 #include "Scripts/Poolables/EntityPool.h"
 #include "Scripts/Managers/ObjectPoolHolder.h"
-#include "Scripts/EnemyAirplane.h"
+#include "Scripts/Entity/Entities/EnemyAirplane.h"
 class EnemySwarmHandler : public Core::AbstractComponent
 {
 public:

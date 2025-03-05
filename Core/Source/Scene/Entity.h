@@ -19,6 +19,7 @@ namespace Core{
 		std::string getName() const { return name; }
 
 		sf::Transformable* getTransformable() { return &m_Transformable; }
+		sf::Transform getGlobalTransform();
 
 		uint32_t getEntityID() { return m_EntityHandle; }
 		uint32_t setEntityID(uint32_t entityHandle) { m_EntityHandle = entityHandle; }

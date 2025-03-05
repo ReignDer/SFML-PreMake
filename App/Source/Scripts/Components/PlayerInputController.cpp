@@ -33,3 +33,7 @@ bool PlayerInputController::isRight()
 {
 	return Core::Input::IsKeyPressed(sf::Keyboard::A);
 }
+
+bool PlayerInputController::hasFire() {
+	return Core::Input::IsKeyPressed(sf::Keyboard::Space);
+}

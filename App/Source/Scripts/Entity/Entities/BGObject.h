@@ -1,7 +1,7 @@
 #pragma once
 #include "Builder.h"
-#include "Managers/TextureManager.h"
-#include "Components/BGMovement.h"
+#include "Scripts/Managers/TextureManager.h"
+#include "Scripts/Components/BGMovement.h"
 class BGObject : public Core::Entity 
 {
 public:

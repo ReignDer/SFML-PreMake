@@ -1,6 +1,7 @@
 #include "ObjectPoolHolder.h"
 
 const std::string ObjectPoolHolder::ENEMY_POOL_TAG = "EnemyPool";
+const std::string ObjectPoolHolder::PROJECTILE_POOL_TAG = "ProjectilePool";
 
 ObjectPoolHolder* ObjectPoolHolder::sharedInstance = nullptr;
 

@@ -12,6 +12,7 @@ public:
 	bool isDown();
 	bool isLeft();
 	bool isRight();
+	bool hasFire();
 
 };
 

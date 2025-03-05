@@ -1,9 +1,10 @@
 #pragma once
 //Entities
-#include "Scripts/Player.h"
-#include "Scripts/BGObject.h"
-#include "Scripts/AirplaneSupport.h"
-#include "Scripts/EnemyAirplane.h"
+#include "Scripts/Entity/Entities/Player.h"
+#include "Scripts/Entity/Entities/BGObject.h"
+#include "Scripts/Entity/Entities/AirplaneSupport.h"
+#include "Scripts/Entity/Entities/EnemyAirplane.h"
+#include "Scripts/Entity/Entities/ProjectileEntity.h"
 
 //UI
 #include "Scripts/Entity/UI/MainMenuScreen.h"

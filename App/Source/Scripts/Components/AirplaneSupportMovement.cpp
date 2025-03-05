@@ -34,6 +34,12 @@ void AirplaneSupportMovement::perform()
 	if (Core::Input::IsKeyPressed(sf::Keyboard::A)) {
 		movement.x -= 1;
 	}
+	m_Ticks += timestep.asSeconds();
+	if (input->hasFire() && m_Ticks > BULLET_SPAWN_INTERVAL) {
+		auto m_ProjectilePool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::PROJECTILE_POOL_TAG);
+		m_Ticks = 0.0f;
+		m_ProjectilePool->requestPoolable();
+	}
 
 	//if (Core::Input::IsMousePressed(sf::Mouse::Left)) {
 	//	sf::Vector2f mousePos(Core::Input::GetMousePosition().first, Core::Input::GetMousePosition().second);

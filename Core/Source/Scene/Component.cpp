@@ -34,6 +34,7 @@ namespace Core {
 	{
 		m_Drawable = nullptr;
 		m_RenderStates = nullptr;
+	
 	}
 	RendererComponent::~RendererComponent()
 	{
@@ -55,4 +56,7 @@ namespace Core {
 	{
 		m_RenderStates = &renderState;
 	}
+
+
+
 }

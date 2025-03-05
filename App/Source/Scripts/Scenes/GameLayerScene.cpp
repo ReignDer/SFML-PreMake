@@ -12,6 +12,9 @@ void GameLayerScene::OnLoadResources()
 
 void GameLayerScene::OnLoadObjects()
 {
+	auto physicsManager = new Core::EmptyEntity("Physics");
+	Core::PhysicsManager::initialize("PhysicsManager", physicsManager);
+	registerEntity(physicsManager);
 
 	auto bgObject = new BGObject("BGObject");
 	registerEntity(bgObject);
@@ -31,6 +34,10 @@ void GameLayerScene::OnLoadObjects()
 	auto swarmHandler = new EnemySwarmHandler(200, "swarmHandler", enemiesManager);
 	enemiesManager->attachComponent(swarmHandler);
 	registerEntity(enemiesManager);
+
+	auto projectilePool = new EntityPool(ObjectPoolHolder::PROJECTILE_POOL_TAG, new ProjectileEntity("projectile"),10,nullptr);
+	projectilePool->initialize();
+	ObjectPoolHolder::getInstance()->registerObjectPool(projectilePool);
 
 	auto menu = new MainMenuScreen("MainMenuScreen");
 	registerEntity(menu);

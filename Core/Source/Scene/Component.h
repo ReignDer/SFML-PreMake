@@ -1,13 +1,14 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Renderer/Renderer.h"
+
 namespace Core {
 	class Entity;
 
 	class AbstractComponent
 	{
 	public:
-		enum ComponentType {NotSet = -1, Script = 0, Renderer = 1, Input = 2};
+		enum ComponentType {NotSet = -1, Script = 0, Renderer = 1, Input = 2, Physics = 3};
 		AbstractComponent(const std::string& name, ComponentType type);
 		virtual ~AbstractComponent();
 
@@ -40,5 +41,7 @@ namespace Core {
 		std::shared_ptr<sf::Drawable> m_Drawable;
 		const sf::RenderStates* m_RenderStates;
 	};
+
+
 }
 

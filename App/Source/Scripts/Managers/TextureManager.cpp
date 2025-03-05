@@ -21,6 +21,7 @@ void TextureManager::loadAll()
     loadTexture("bar_1", "Media/bar_1.png");
     loadTexture("f", "Media/f.png");
     loadTexture("TitleScreen", "Media/TitleScreenBG.png");
+    loadTexture("projectile", "Media/Bullet.png");
   
 }
 
@@ -41,6 +42,7 @@ void TextureManager::loadGame()
     loadTexture("b_5", "Media/b_5.png");
     loadTexture("bar_1", "Media/bar_1.png");
     loadTexture("f", "Media/f.png");
+    loadTexture("projectile", "Media/Bullet.png");
 }
 
 void TextureManager::loadTexture(const std::string& key, const std::string& path)

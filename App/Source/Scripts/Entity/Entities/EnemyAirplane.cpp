@@ -1,6 +1,6 @@
 #include "EnemyAirplane.h"
 
-EnemyAirplane::EnemyAirplane(const std::string& name) : EntityPoolable(name)
+EnemyAirplane::EnemyAirplane(const std::string& name) : EntityPoolable(name), CollisionListener()
 {
 }
 
@@ -27,11 +27,16 @@ void EnemyAirplane::initialize()
 	auto behaviour = new EnemyBehaviour("AvengerBehaviour");
 	attachComponent(behaviour);
 	behaviour->configure(1.0f);
+
+	m_Collider = new Core::ColliderComponent("EnemyCollider");
+	m_Collider->setLocalBounds(m_Sprite->getGlobalBounds());
+	m_Collider->setCollisionListener(this);
+	attachComponent(m_Collider);
 }
 
 void EnemyAirplane::OnRelease()
 {
-	
+	Core::PhysicsManager::getInstance()->untrackObject(m_Collider);
 }
 
 void EnemyAirplane::OnActivate()
@@ -39,8 +44,23 @@ void EnemyAirplane::OnActivate()
 	auto behaviour = (EnemyBehaviour*)findComponentByName("AvengerBehaviour");
 	behaviour->reset();
 
+	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
+
 	setPosition(Core::Core::Get().GetWindow().GetWidth() / 2, -30);
-	this->getTransformable()->move(rand() % SPAWN_RANGE - rand() % SPAWN_RANGE, 0);
+	this->getTransformable()->move(rand() % SPAWN_RANGE - rand() % SPAWN_RANGE, 50);
+}
+
+void EnemyAirplane::OnCollisionEnter(Core::Entity* entity)
+{
+	if (entity->getName().find("projectile") != std::string::npos) {
+		return;
+		EntityPool* enemyPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG);
+		enemyPool->releasePoolable((EntityPoolable*)this);
+	}
+}
+
+void EnemyAirplane::OnCollisionExit(Core::Entity* entity)
+{
 }
 
 

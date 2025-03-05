@@ -82,6 +82,24 @@ namespace Core {
 		}
 	}
 
+	sf::Transform Entity::getGlobalTransform()
+	{
+		Entity* parentObj = this;
+		std::vector<Entity*> parentList;
+		while (parentObj != nullptr) {
+			parentList.push_back(parentObj);
+			parentObj = parentObj->getParent();
+		}
+
+		sf::Transform transform = sf::Transform::Identity;
+		int index = parentList.size() - 1;
+		for (int i = index; i >= 0; i--) {
+			transform = transform * parentList[i]->getTransformable()->getTransform();
+		}
+
+		return transform;
+	}
+
 	void Entity::attachChild(Entity* childEntity)
 	{
 		m_EntityChildList.emplace_back(childEntity);

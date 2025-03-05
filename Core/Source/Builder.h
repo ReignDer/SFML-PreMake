@@ -11,6 +11,11 @@
 #include "Scene/EmptyEntity.h"
 #include "Scene/EntityManager.h"
 #include "Scene/Component.h"
+
+#include "Scene/Physics/CollisionListener.h"
+#include "Scene/Physics/ColliderComponent.h"
+#include "Scene/Physics/PhysicsManager.h"
+
 #include "Scene/GenericInputController.h"
 #include "Scene/AbstractScene.h"
 #include "Scene/SceneManager.h"

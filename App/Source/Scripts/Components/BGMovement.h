@@ -1,7 +1,7 @@
 #pragma once
 #include "Builder.h"
 #include <Scene/Component.h>
-#include "Scripts/BGObject.h"
+#include "Scripts/Entity/Entities/BGObject.h"
 
 class BGMovement : public Core::AbstractComponent
 {

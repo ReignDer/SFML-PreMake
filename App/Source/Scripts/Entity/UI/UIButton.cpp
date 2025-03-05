@@ -26,20 +26,8 @@ void UIButton::initialize()
 sf::FloatRect UIButton::getGlobalBounds()
 {
 	sf::FloatRect bounds = m_Sprite->getGlobalBounds();
-	
-	Core::Entity* parentEnt = this;
-	std::vector<Core::Entity*> parentList;
-	while (parentEnt != nullptr) {
-		parentList.push_back(parentEnt);
-		parentEnt = parentEnt->getParent();
-	}
 
-	sf::Transform transform = sf::Transform::Identity;
-	int startInd = parentList.size() - 1;
-	for (int i = startInd; i >= 0; i--) {
-		transform = transform * parentList[i]->getTransformable()->getTransform();
-	}
-	bounds = transform.transformRect(bounds);
+	bounds = this->getGlobalTransform().transformRect(bounds);
 	return bounds;
 }
 

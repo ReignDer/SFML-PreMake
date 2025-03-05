@@ -1,6 +1,6 @@
 #pragma once
 #include "Builder.h"
-#include "Managers/TextureManager.h"
+#include "Scripts/Managers/TextureManager.h"
 class AirplaneSupport : public Core::Entity
 {
 public:
