@@ -30,10 +30,10 @@ void GameLayerScene::OnLoadObjects()
 	player->attachChild(support2);
 	support2->setPosition(-50, 100);
 
-	auto enemiesManager = new Core::EmptyEntity("EnemiesManager");
+	/*auto enemiesManager = new Core::EmptyEntity("EnemiesManager");
 	auto swarmHandler = new EnemySwarmHandler(200, "swarmHandler", enemiesManager);
 	enemiesManager->attachComponent(swarmHandler);
-	registerEntity(enemiesManager);
+	registerEntity(enemiesManager);*/
 
 	auto projectilePool = new EntityPool(ObjectPoolHolder::PROJECTILE_POOL_TAG, new ProjectileEntity("projectile"),10,nullptr);
 	projectilePool->initialize();

@@ -89,11 +89,11 @@ void GameLayer::OnEvent(sf::Event& e)
 
 void GameLayer::Update(sf::Time timestep)
 {
-	std::string timeFramePerSecond = "Frames / Second = " + std::to_string((int)(1.0f / timestep.asSeconds()));
-	m_TextFramePerSeconds.setString(timeFramePerSecond);
+	//std::string timeFramePerSecond = "Frames / Second = " + std::to_string((int)(1.0f / timestep.asSeconds()));
+	//m_TextFramePerSeconds.setString(timeFramePerSecond);
 
-	std::string timeUpdate = "Time/Update: " + std::to_string(timestep.asMicroseconds()) + "us";
-	m_TextTimeUpdate.setString(timeUpdate);
+	//std::string timeUpdate = "Time/Update: " + std::to_string(timestep.asMicroseconds()) + "us";
+	//m_TextTimeUpdate.setString(timeUpdate);
 
 	//Update scene
 	m_ActiveScene->OnUpdate(timestep);

@@ -57,7 +57,7 @@ namespace Core {
 	}
 	void ColliderComponent::clearCollisions()
 	{
-		for (ColliderComponent* collider : m_Collisions) {
+		for (auto& collider : m_Collisions) {
 			collider->collisionExit(getOwner());
 			collisionExit(getOwner());
 			collider->removeCollision(this);

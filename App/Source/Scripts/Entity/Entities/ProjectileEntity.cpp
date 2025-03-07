@@ -12,14 +12,14 @@ void ProjectileEntity::initialize()
 	sf::Vector2u textureSize = m_Sprite->getTexture()->getSize();
 	m_Sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
 
-	auto renderer = new Core::RendererComponent("EnemyAirplane");
+	auto renderer = new Core::RendererComponent("projectile");
 	renderer->assignDrawable(m_Sprite);
 	attachComponent(renderer);
 
 	m_ProjectileMovement = new ProjectileMovement("projectile_movement");
 	attachComponent(m_ProjectileMovement);
 
-	m_Collider = new Core::ColliderComponent("EnemyCollider");
+	m_Collider = new Core::ColliderComponent("projectileCollider");
 
 	m_Collider->setLocalBounds(m_Sprite->getGlobalBounds());
 	m_Collider->setCollisionListener(this);

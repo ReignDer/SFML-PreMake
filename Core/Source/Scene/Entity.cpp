@@ -10,13 +10,11 @@ namespace Core {
 
 	Entity::~Entity()
 	{
-		for (auto& components : m_ComponentList) {
-			LOG(components->getName());
+		for (const auto& components : m_ComponentList) {
 			delete components;
 		}
 		m_ComponentList.clear();
-		for (auto& child : m_EntityChildList) {
-			LOG(child->getName());
+		for (const auto& child : m_EntityChildList) {
 			delete child;
 		}
 		
@@ -31,14 +29,14 @@ namespace Core {
 
 		std::vector<AbstractComponent*> componentList = getComponentsByType(AbstractComponent::ComponentType::Script);
 		
-		for (int i = 0; i < componentList.size(); i++) {
-			componentList[i]->setDeltaTime(timestep);
-			componentList[i]->perform();
+		for (const auto& components : componentList) {
+			components->setDeltaTime(timestep);
+			components->perform();
 
 		}
 
-		for (int j = 0; j < m_EntityChildList.size(); j++) {
-			m_EntityChildList[j]->update(timestep);
+		for (const auto& entity : m_EntityChildList) {
+			entity->update(timestep);
 		}
 	}
 
@@ -48,14 +46,14 @@ namespace Core {
 
 		const auto& componentList = getComponentsByType(AbstractComponent::ComponentType::Input);
 
-		for (int i = 0; i < componentList.size(); i++) {
-			((GenericInputController*)(componentList[i]))->assignEvent(event);
-			componentList[i]->perform();
+		for (const auto& components : componentList) {
+			((GenericInputController*)(components))->assignEvent(event);
+			components->perform();
 
 		}
 
-		for (int j = 0; j < m_EntityChildList.size(); j++) {
-			m_EntityChildList[j]->processInput(event);
+		for (const auto& entity : m_EntityChildList) {
+			entity->processInput(event);
 		}
 	}
 
@@ -69,7 +67,7 @@ namespace Core {
 
 		const auto& componentList = getComponentsByType(AbstractComponent::ComponentType::Renderer);
 		
-		for (auto& component : componentList) {
+		for (const auto& component : componentList) {
 			RendererComponent* renderer = (RendererComponent*)component;
 			renderer->assignRenderState(renderState);
 			renderer->perform();
@@ -77,7 +75,7 @@ namespace Core {
 		/*if (m_Enabled)
 			Renderer::Enter(*m_Sprite, renderState);*/
 		//LOG(m_EntityChildList.size());
-		for (auto& entityChild : m_EntityChildList) {
+		for (const auto& entityChild : m_EntityChildList) {
 			entityChild->draw(renderState);
 		}
 	}
@@ -87,7 +85,7 @@ namespace Core {
 		Entity* parentObj = this;
 		std::vector<Entity*> parentList;
 		while (parentObj != nullptr) {
-			parentList.push_back(parentObj);
+			parentList.emplace_back(parentObj);
 			parentObj = parentObj->getParent();
 		}
 
@@ -158,7 +156,7 @@ namespace Core {
 
 	AbstractComponent* Entity::findComponentByName(const std::string& name)
 	{
-		for (auto& entity : m_ComponentList) {
+		for (const auto& entity : m_ComponentList) {
 			if (entity->getName() == name) {
 				return entity;
 			}
@@ -169,7 +167,7 @@ namespace Core {
 
 	AbstractComponent* Entity::findComponentOfType(AbstractComponent::ComponentType type, const std::string& name)
 	{
-		for (auto& entity : m_ComponentList) {
+		for (const auto& entity : m_ComponentList) {
 			if (entity->getName() == name && entity->getType() == type) {
 				return entity;
 			}

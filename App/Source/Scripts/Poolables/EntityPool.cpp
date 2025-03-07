@@ -11,6 +11,7 @@ EntityPool::~EntityPool()
 	delete objectCopy;
 	objectCopy = nullptr;
 	parent = nullptr;
+
 }
 
 void EntityPool::initialize()

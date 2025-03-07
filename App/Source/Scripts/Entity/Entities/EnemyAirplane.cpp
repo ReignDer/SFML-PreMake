@@ -53,7 +53,6 @@ void EnemyAirplane::OnActivate()
 void EnemyAirplane::OnCollisionEnter(Core::Entity* entity)
 {
 	if (entity->getName().find("projectile") != std::string::npos) {
-		return;
 		EntityPool* enemyPool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::ENEMY_POOL_TAG);
 		enemyPool->releasePoolable((EntityPoolable*)this);
 	}

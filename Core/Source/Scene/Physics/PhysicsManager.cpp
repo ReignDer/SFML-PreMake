@@ -22,12 +22,12 @@ namespace Core {
 
 	void PhysicsManager::trackObject(ColliderComponent* object)
 	{
-		m_TrackedObjects.push_back(object);
+		m_TrackedObjects.emplace_back(object);
 	}
 
 	void PhysicsManager::untrackObject(ColliderComponent* object)
 	{
-		m_ForCleaningObjects.push_back(object);
+		m_ForCleaningObjects.emplace_back(object);
 	}
 
 	void PhysicsManager::perform()
@@ -36,6 +36,7 @@ namespace Core {
 			for (int j = i + 1; j < m_TrackedObjects.size(); j++) {
 				if (m_TrackedObjects[i]->getOwner()->isEnabled() &&
 					m_TrackedObjects[j]->getOwner()->isEnabled()) {
+
 					if (m_TrackedObjects[i]->willCollide(m_TrackedObjects[j])) {
 						if (!m_TrackedObjects[i]->hasCollisionWith(m_TrackedObjects[j])) {
 							m_TrackedObjects[i]->addCollision(m_TrackedObjects[j]);
