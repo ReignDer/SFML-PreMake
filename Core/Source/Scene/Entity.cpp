@@ -90,7 +90,7 @@ namespace Core {
 		}
 
 		sf::Transform transform = sf::Transform::Identity;
-		int index = parentList.size() - 1;
+		const int index = static_cast<int>(parentList.size()) - 1;
 		for (int i = index; i >= 0; i--) {
 			transform = transform * parentList[i]->getTransformable()->getTransform();
 		}
@@ -127,7 +127,10 @@ namespace Core {
 		m_Transformable.setPosition(x, y);
 	}
 
-
+	void Entity::setSprite(const sf::IntRect& rect)
+	{
+		m_Sprite->setTextureRect(rect);
+	}
 
 
 	void Entity::attachComponent(AbstractComponent* component)

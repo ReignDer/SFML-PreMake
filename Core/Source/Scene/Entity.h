@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Renderer/Renderer.h"
 #include "Scene.h"
-#include "Component.h"
+#include "RendererComponent.h"
 #include "GenericInputController.h"
 namespace Core{
 	class Entity
@@ -20,14 +20,16 @@ namespace Core{
 
 		sf::Transformable* getTransformable() { return &m_Transformable; }
 		sf::Transform getGlobalTransform();
+		std::shared_ptr<sf::Sprite> getSprite() { return m_Sprite; }
 
 		uint32_t getEntityID() { return m_EntityHandle; }
 		uint32_t setEntityID(uint32_t entityHandle) { m_EntityHandle = entityHandle; }
-		int getComponentListSize() { return (int)m_ComponentList.size(); }
+		int getComponentListSize() { return static_cast<int>(m_ComponentList.size()); }
 
 		void attachChild(Entity* childEntity);
 		void detachChild(Entity* childEntity);
 		void setPosition(float x, float y);
+		void setSprite(const sf::IntRect& rect);
 
 	public:
 		////TODO: Call scene registry to check entity if it has the component

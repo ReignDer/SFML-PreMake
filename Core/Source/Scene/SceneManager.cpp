@@ -5,6 +5,7 @@ namespace Core {
     std::string SceneManager::MAIN_MENU_SCENE_NAME = "MainMenuScene";
     std::string SceneManager::GAME_SCENE_NAME = "GameScene";
     std::string SceneManager::TITLE_SCENE_NAME = "TitleScene";
+    std::string SceneManager::JSON_SCENE_NAME = "JSONScene";
 
     SceneManager* SceneManager::sharedInstance = nullptr;
 

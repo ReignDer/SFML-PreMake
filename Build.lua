@@ -14,6 +14,7 @@ OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 group "Core"
 	include "Core/Build-Core.lua"
    include "Core/Vendor/SFML/Build-Sfml.lua"
+   include "Core/Vendor/RapidJSON/rapidjson-1.1.0/rapidjson-1.1.0/Build-Rapid.lua"
 group ""
 
 include "App/Build-App.lua"

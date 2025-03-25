@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Renderer/Renderer.h"
-
 namespace Core {
 	class Entity;
 
@@ -26,20 +25,6 @@ namespace Core {
 		ComponentType type;
 		std::string name;
 		sf::Time timestep;
-	};
-
-	class RendererComponent : public AbstractComponent {
-	public:
-		RendererComponent(const std::string& name);
-		virtual ~RendererComponent();
-		virtual void perform();
-
-		void assignDrawable(std::shared_ptr<sf::Drawable> drawable);
-		void assignRenderState(const sf::RenderStates& renderState);
-
-	private:
-		std::shared_ptr<sf::Drawable> m_Drawable;
-		const sf::RenderStates* m_RenderStates;
 	};
 
 

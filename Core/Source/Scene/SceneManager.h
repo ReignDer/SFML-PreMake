@@ -13,6 +13,7 @@ namespace Core {
 		static std::string MAIN_MENU_SCENE_NAME;
 		static std::string GAME_SCENE_NAME;
 		static std::string TITLE_SCENE_NAME;
+		static std::string JSON_SCENE_NAME;
 
 		static SceneManager* getInstance();
 		void registerScene(AbstractScene* scene);

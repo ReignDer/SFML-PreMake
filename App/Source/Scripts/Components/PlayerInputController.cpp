@@ -11,7 +11,7 @@ PlayerInputController::~PlayerInputController()
 
 void PlayerInputController::perform()
 {
-	
+
 }
 
 bool PlayerInputController::isUp()

@@ -1,5 +1,6 @@
 #include "TextureManager.h"
 
+
 TextureManager* TextureManager::sharedInstance = nullptr;
 
 TextureManager* TextureManager::getInstance()
@@ -43,6 +44,27 @@ void TextureManager::loadGame()
     loadTexture("bar_1", "Media/bar_1.png");
     loadTexture("f", "Media/f.png");
     loadTexture("projectile", "Media/Bullet.png");
+}
+
+void TextureManager::parseJSON()
+{
+    FILE* file = fopen("Media/Dota2.json", "rb");
+
+    assert(file != 0);
+    LOG("SUCCESS");
+    char readBuffer[65536];
+    rapidjson::FileReadStream is(file, readBuffer, sizeof(readBuffer));
+    rapidjson::Document doc;
+
+    doc.ParseStream(is);
+    m_Doc.CopyFrom(doc,m_Doc.GetAllocator());
+
+    fclose(file);
+}
+
+void TextureManager::loadAtlas()
+{
+    loadTexture("Dota2","Media/Dota2.png");
 }
 
 void TextureManager::loadTexture(const std::string& key, const std::string& path)

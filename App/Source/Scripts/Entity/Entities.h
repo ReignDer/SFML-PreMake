@@ -5,6 +5,7 @@
 #include "Scripts/Entity/Entities/AirplaneSupport.h"
 #include "Scripts/Entity/Entities/EnemyAirplane.h"
 #include "Scripts/Entity/Entities/ProjectileEntity.h"
+#include "Scripts/Entity/Entities/AtlasEntity.h"
 
 //UI
 #include "Scripts/Entity/UI/MainMenuScreen.h"

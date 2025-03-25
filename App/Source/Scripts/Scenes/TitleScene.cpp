@@ -7,6 +7,7 @@ TitleScene::TitleScene() : Core::AbstractScene("TitleScene")
 void TitleScene::OnLoadResources()
 {
 	TextureManager::getInstance()->loadTitle();
+	TextureManager::getInstance()->parseJSON();
 	FontManager::getInstance()->loadAll();
 }
 

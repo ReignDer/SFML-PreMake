@@ -10,4 +10,6 @@
 #include "Scripts/Components/PlayerInputController.h"
 #include "Scripts/Components/ProjectileMovement.h"
 
+#include "Scripts/Components/SpriteChange.h"
+
 

@@ -8,16 +8,17 @@ project "Core"
    pchheader "Corepch.h"
    pchsource "Source/Corepch.cpp"
    files { "Source/**.h", "Source/**.cpp" }
-   defines{"SFML_STATIC", "FLAC__NO_DLL", "AL_STATIC"}
+   defines{"SFML_STATIC", "FLAC__NO_DLL", "AL_STATIC", "_CRT_SECURE_NO_WARNINGS"}
 
    includedirs
    {
-      "Source", "Vendor/SFML/include", "Vendor/SFML/extlibs/libs-msvc-universal/x64"
+      "Source", "Vendor/SFML/include", "Vendor/SFML/extlibs/libs-msvc-universal/x64", 
+      "Vendor/RapidJSON/rapidjson-1.1.0/rapidjson-1.1.0/include"
    }
 
    libdirs{"Vendor/SFML/extlibs/libs-msvc-universal/x64"}
    links{
-        "SFML",
+        "SFML", "RapidJSON",
 		"freetype.lib","winmm.lib","opengl32.lib", "flac.lib","openal32.lib",
         "ogg.lib", "vorbis.lib","vorbisfile.lib", "vorbisenc.lib"
    }

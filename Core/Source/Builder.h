@@ -11,6 +11,8 @@
 #include "Scene/EmptyEntity.h"
 #include "Scene/EntityManager.h"
 #include "Scene/Component.h"
+#include "Scene/RendererComponent.h"
+#include "Scene/SpriteRenderer.h"
 
 #include "Scene/Physics/CollisionListener.h"
 #include "Scene/Physics/ColliderComponent.h"

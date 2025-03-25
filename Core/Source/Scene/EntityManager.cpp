@@ -29,7 +29,7 @@ namespace Core {
 
 	int EntityManager::activeObjects()
 	{
-		return m_EntitiesList.size();
+		return static_cast<int>(m_EntitiesList.size());
 	}
 
 	void EntityManager::update(const sf::Time& timestep)

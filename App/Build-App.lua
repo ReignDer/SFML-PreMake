@@ -6,12 +6,13 @@ project "App"
    staticruntime "off"
 
    files { "Source/**.h", "Source/**.cpp"}
-   defines{"SFML_STATIC","FLAC__NO_DLL", "AL_STATIC"}
+   defines{"SFML_STATIC","FLAC__NO_DLL", "AL_STATIC", "_CRT_SECURE_NO_WARNINGS"}
    includedirs
    {
       "Source",
       "Media",
       "../Core/Vendor/SFML/include",
+      "../Core/Vendor/RapidJSON/rapidjson-1.1.0/rapidjson-1.1.0/include",
 
 	  -- Include Core
 	  "../Core/Source"
@@ -19,7 +20,7 @@ project "App"
 
    links
    {
-      "Core", "SFML"
+      "Core", "SFML", "RapidJSON"
    }
 
    targetdir ("../Binaries/" .. OutputDir .. "/%{prj.name}")
