@@ -1,5 +1,7 @@
 #include "GameLayerScene.h"
 
+#include "Scripts/Entity/Entities/Floor.h"
+
 GameLayerScene::GameLayerScene() : AbstractScene("GameScene")
 {
 }
@@ -18,6 +20,9 @@ void GameLayerScene::OnLoadObjects()
 
 	auto bgObject = new BGObject("BGObject");
 	registerEntity(bgObject);
+
+	auto floor = new Floor("Floor");
+	registerEntity(floor);
 
 	auto player = new Player("Player");
 	player->m_Mass = 30.f;

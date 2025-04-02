@@ -63,6 +63,7 @@ namespace Core {
 	{
 		m_EntitiesMap[entity->getName()] = entity;
 		m_EntitiesList.emplace_back(entity);
+		
 		entity->initialize();
 	}
 

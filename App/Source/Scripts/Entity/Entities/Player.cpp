@@ -1,8 +1,15 @@
 #include "Player.h"
 
+#include <algorithm>
 
-Player::Player(std::string name) : Core::Entity(name)
+
+Player::Player(std::string name) : Core::Entity(name), CollisionListener()
 {
+}
+
+Player::~Player()
+{
+	//Core::PhysicsManager::getInstance()->untrackObject(m_Collider);
 }
 
 void Player::initialize()
@@ -15,6 +22,11 @@ void Player::initialize()
 	m_Sprite->setPosition(250, 250);
 	m_Sprite->setRotation(0.0f);
 
+	m_Collider = new Core::ColliderComponent("PlayerCollider");
+	m_Collider->setLocalBounds(m_Sprite->getGlobalBounds());
+	m_Collider->setCollisionListener(this);
+	attachComponent(m_Collider);
+
 	auto inputController = new PlayerInputController("PlayerInput");
 	attachComponent(inputController);
 
@@ -24,8 +36,25 @@ void Player::initialize()
 	auto renderer = new Core::RendererComponent("PlayerSprite");
 	renderer->assignDrawable(m_Sprite);
 	attachComponent(renderer);
-	
+	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
 }
+
+void Player::OnCollisionEnter(Entity* entity)
+{
+	if (entity->getName().find("Floor") != std::string::npos)
+	{
+		m_ColliderActive = true;
+	}
+}
+
+void Player::OnCollisionExit(Entity* entity)
+{
+	if (entity->getName().find("Floor") != std::string::npos)
+	{
+		//m_ColliderActive = false;
+	}
+}
+
 
 
 

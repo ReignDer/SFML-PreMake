@@ -15,7 +15,7 @@ void AirplaneSupportMovement::perform()
 	if (playerTransformable == nullptr || input == nullptr) {
 		LOG("PlayerTransformable not found");
 	}
-
+	
 	sf::Vector2f movement(0.f, 0.f);
 
 	if (input->isUp()) {

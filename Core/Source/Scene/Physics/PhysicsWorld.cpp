@@ -1,6 +1,8 @@
 #include "Corepch.h"
 #include "PhysicsWorld.h"
 
+#include "PhysicsManager.h"
+
 namespace Core
 {
     PhysicsWorld* PhysicsWorld::sharedInstance = nullptr;
@@ -36,11 +38,9 @@ namespace Core
     }
     void PhysicsWorld::deleteAllObjectInScene()
     {
-        LOG("DELETINGPHYSISCS");
         forceRegistry.Clear();
 
         m_Entities.clear();
-
     }
     void PhysicsWorld::UpdateEntityList()
     {

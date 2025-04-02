@@ -29,6 +29,7 @@ namespace Core {
 	{
 		m_ForCleaningObjects.emplace_back(object);
 	}
+	
 
 	void PhysicsManager::perform()
 	{
@@ -58,11 +59,13 @@ namespace Core {
 							m_TrackedObjects[j]->removeCollision(m_TrackedObjects[i]);
 						}
 					}
-				}
+					}
 			}
 		}
 		cleanUpObjects();
+
 	}
+	
 
 	void PhysicsManager::cleanUpObjects()
 	{
