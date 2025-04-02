@@ -17,6 +17,7 @@
 #include "Scene/Physics/CollisionListener.h"
 #include "Scene/Physics/ColliderComponent.h"
 #include "Scene/Physics/PhysicsManager.h"
+#include "Scene/Physics/PhysicsWorld.h"
 
 #include "Scene/GenericInputController.h"
 #include "Scene/AbstractScene.h"

@@ -27,6 +27,14 @@ namespace Core {
 	{
 		if (!isEnabled()) return;
 
+		if (moveable)
+		{
+			UpdatePosition(timestep);
+			UpdateVelocity(timestep);
+
+			resetForce();
+		}
+		
 		std::vector<AbstractComponent*> componentList = getComponentsByType(AbstractComponent::ComponentType::Script);
 		
 		for (const auto& components : componentList) {
@@ -200,4 +208,28 @@ namespace Core {
 		m_Enabled = enabled;
 	}
 
+	void Entity::addForce(sf::Vector2f vector2)
+	{
+		m_AccumulatedForce += vector2;
+	}
+
+	void Entity::UpdatePosition(const sf::Time& timestep)
+	{
+		m_Position = (m_Velocity * timestep.asSeconds()) + ((m_Acceleration * timestep.asSeconds() * timestep.asSeconds()) * (1.f/2.f)) + m_Position;
+		m_Transformable.move(m_Position);
+	}
+
+	void Entity::UpdateVelocity(const sf::Time& timestep)
+	{
+		m_Acceleration += m_AccumulatedForce * (1/m_Mass);
+		m_Velocity = (m_Acceleration * timestep.asSeconds()) + m_Velocity;
+		m_Velocity = m_Velocity * powf(damping, timestep.asSeconds());
+		
+	}
+
+	void Entity::resetForce()
+	{
+		m_AccumulatedForce = sf::Vector2f(0,0);
+		m_Acceleration = sf::Vector2f(0,0);
+	}
 }

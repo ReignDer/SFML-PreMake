@@ -24,7 +24,7 @@ namespace Core {
 		PhysicsManager(PhysicsManager const&) : AbstractComponent(name, Script) {};
 		PhysicsManager& operator=(PhysicsManager const&){};
 		static PhysicsManager* sharedInstance;
-
+		bool m_EnableGravity = false;
 		
 
 		void cleanUpObjects();

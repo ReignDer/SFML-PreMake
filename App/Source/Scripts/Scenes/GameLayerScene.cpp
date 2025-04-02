@@ -20,7 +20,13 @@ void GameLayerScene::OnLoadObjects()
 	registerEntity(bgObject);
 
 	auto player = new Player("Player");
+	player->m_Mass = 30.f;
+	player->hasGravity = true;
+	player->moveable = true;
+	Core::PhysicsWorld::getInstance()->addEntity(player);
 	registerEntity(player);
+
+	
 
 	auto support1 = new AirplaneSupport("support1");
 	player->attachChild(support1);

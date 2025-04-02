@@ -20,12 +20,12 @@ void GameLayer::OnAttach()
 	srand(time(nullptr));
 
 	m_ActiveScene = std::make_shared<Core::Scene>();
-
+	Core::PhysicsWorld::getInstance()->SetGravity(9.f);
 	Core::SceneManager::getInstance()->registerScene(new GameLayerScene);
 	Core::SceneManager::getInstance()->registerScene(new TitleScene);
 	Core::SceneManager::getInstance()->registerScene(new MainMenuScene);
 	Core::SceneManager::getInstance()->registerScene(new JSONScene);
-	Core::SceneManager::getInstance()->loadScene(Core::SceneManager::GAME_SCENE_NAME);
+	Core::SceneManager::getInstance()->loadScene(Core::SceneManager::TITLE_SCENE_NAME);
 
 
 
@@ -101,9 +101,15 @@ void GameLayer::Update(sf::Time timestep)
 
 	//PROBLEM
 	if (!Core::Core::Get().isPaused())
+	{
+		Core::PhysicsWorld::getInstance()->UpdateEntities(timestep);
 		Core::EntityManager::getInstance()->update(timestep);
+	}
 	else
+	{
+		Core::PhysicsWorld::getInstance()->UpdateEntities(sf::Time::Zero);
 		Core::EntityManager::getInstance()->update(sf::Time::Zero);
+	}
 	
 }
 

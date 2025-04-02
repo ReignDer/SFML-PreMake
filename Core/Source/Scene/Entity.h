@@ -58,6 +58,24 @@ namespace Core{
 
 		void setEnabled(bool m_Enabled);
 		bool isEnabled() { return m_Enabled; }
+	public:
+		void addForce(sf::Vector2f vector2);
+		float m_Mass = 1.0f;
+		sf::Vector2f m_Velocity;
+		sf::Vector2f m_Acceleration;
+		bool moveable = false;
+		float damping = 0.9f;
+		bool hasGravity = false;
+
+	protected:
+		
+		void UpdatePosition(const sf::Time& timestep);
+		void UpdateVelocity(const sf::Time& timestep);
+		void resetForce();
+
+		sf::Vector2f m_AccumulatedForce;
+		sf::Vector2f m_Position;
+
 	protected:
 		void setParent(Entity* entity) { m_Parent = entity; }
 
@@ -73,6 +91,7 @@ namespace Core{
 		std::vector<AbstractComponent*> m_ComponentList;
 		
 		uint32_t m_EntityHandle;
+
 		//Scene* m_Scene;
 
 

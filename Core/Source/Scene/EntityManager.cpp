@@ -1,6 +1,8 @@
 #include "Corepch.h"
 #include "EntityManager.h"
 
+#include "Physics/PhysicsWorld.h"
+
 namespace Core {
 	EntityManager* EntityManager::sharedInstance = nullptr;
 
@@ -34,9 +36,8 @@ namespace Core {
 
 	void EntityManager::update(const sf::Time& timestep)
 	{
-
 		for (int i = 0; i < m_EntitiesList.size(); i++) {
-
+			
 			m_EntitiesList[i]->update(timestep);
 
 		}
