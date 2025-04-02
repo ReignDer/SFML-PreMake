@@ -9,7 +9,7 @@ public:
 	BGMovement(std::string name);
 	virtual void perform() override;
 private:
-	const float SPEED_MULTIPLIER = 50.f;
+	const float SPEED_MULTIPLIER = 100.f;
 
 };
 

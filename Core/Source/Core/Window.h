@@ -9,8 +9,8 @@ namespace Core {
 		unsigned int Height;
 
 		WindowProperties(const std::string& title = "Mathieu Marc I. Pobre",
-			unsigned int width = 300,
-			unsigned int height = 300) : Title(title), Width(width), Height(height) {}
+			unsigned int width = 640,
+			unsigned int height = 480) : Title(title), Width(width), Height(height) {}
 	};
 	class Window {
 	public:

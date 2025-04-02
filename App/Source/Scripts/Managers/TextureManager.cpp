@@ -23,7 +23,7 @@ void TextureManager::loadAll()
     loadTexture("f", "Media/f.png");
     loadTexture("TitleScreen", "Media/TitleScreenBG.png");
     loadTexture("projectile", "Media/Bullet.png");
-  
+    loadTexture("Circus_bg", "Media/Circus_bg.png");
 }
 
 void TextureManager::loadTitle()
@@ -44,6 +44,7 @@ void TextureManager::loadGame()
     loadTexture("bar_1", "Media/bar_1.png");
     loadTexture("f", "Media/f.png");
     loadTexture("projectile", "Media/Bullet.png");
+    loadTexture("Circus_bg", "Media/Circus_bg.png");
 }
 
 void TextureManager::parseJSON()

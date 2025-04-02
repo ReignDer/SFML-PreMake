@@ -21,11 +21,11 @@ void GameLayer::OnAttach()
 
 	m_ActiveScene = std::make_shared<Core::Scene>();
 
-	//Core::SceneManager::getInstance()->registerScene(new GameLayerScene);
-	//Core::SceneManager::getInstance()->registerScene(new TitleScene);
-	//Core::SceneManager::getInstance()->registerScene(new MainMenuScene);
+	Core::SceneManager::getInstance()->registerScene(new GameLayerScene);
+	Core::SceneManager::getInstance()->registerScene(new TitleScene);
+	Core::SceneManager::getInstance()->registerScene(new MainMenuScene);
 	Core::SceneManager::getInstance()->registerScene(new JSONScene);
-	Core::SceneManager::getInstance()->loadScene(Core::SceneManager::JSON_SCENE_NAME);
+	Core::SceneManager::getInstance()->loadScene(Core::SceneManager::GAME_SCENE_NAME);
 
 
 

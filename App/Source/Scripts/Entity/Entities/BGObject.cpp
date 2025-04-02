@@ -7,11 +7,12 @@ BGObject::BGObject(const std::string& name) : Core::Entity(name)
 void BGObject::initialize()
 {
 	m_Sprite = std::make_shared<sf::Sprite>();
-	m_Sprite->setTexture(*TextureManager::getInstance()->getTexture("desert_bg"));
+	m_Sprite->setTexture(*TextureManager::getInstance()->getTexture("Circus_bg"));
 	sf::Vector2u textureSize = m_Sprite->getTexture()->getSize();
 
-	m_Sprite->setScale(2,2);
-	m_Sprite->setPosition(0, -100);
+	m_Sprite->setScale(0.2,0.2);
+	m_Sprite->setPosition(-350, 0);
+	m_Sprite->setTextureRect(sf::IntRect(0, 0, textureSize.x, textureSize.y));
 
 	auto bgMovement = new BGMovement("BGMovement");
 	attachComponent(bgMovement);
