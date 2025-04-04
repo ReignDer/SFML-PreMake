@@ -50,11 +50,11 @@ void GameLayerScene::OnLoadObjects()
 	projectilePool->initialize();
 	ObjectPoolHolder::getInstance()->registerObjectPool(projectilePool);
 
-	auto menu = new MainMenuScreen("MainMenuScreen");
-	registerEntity(menu);
-
 	auto uiBar = new UIBar("Bar");
 	registerEntity(uiBar);
+
+	auto menu = new MainMenuScreen("MainMenuScreen");
+	registerEntity(menu);
 
 	
 }

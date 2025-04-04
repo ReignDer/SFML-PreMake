@@ -42,7 +42,7 @@ void TextureManager::loadGame()
     loadTexture("b_4", "Media/b_4.png");
     loadTexture("b_5", "Media/b_5.png");
     loadTexture("bar_1", "Media/bar_1.png");
-    loadTexture("f", "Media/f.png");
+    loadTexture("PopUP", "Media/PopUP.png");
     loadTexture("projectile", "Media/Bullet.png");
     loadTexture("Circus_bg", "Media/Circus_bg.png");
 }

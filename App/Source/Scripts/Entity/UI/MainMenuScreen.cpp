@@ -11,9 +11,11 @@ MainMenuScreen::~MainMenuScreen()
 void MainMenuScreen::initialize()
 {
 	m_Sprite = std::make_shared<sf::Sprite>();
-	m_Sprite->setTexture(*TextureManager::getInstance()->getTexture("f"));
+	m_Sprite->setTexture(*TextureManager::getInstance()->getTexture("PopUP"));
 	sf::Vector2u textureSize = m_Sprite->getTexture()->getSize();
 	m_Sprite->setOrigin(textureSize.x/2, textureSize.y / 2);
+	m_Sprite->setScale(0.35, 0.3);
+
 	auto renderer = new Core::RendererComponent("MainMenuScreen");
 	renderer->assignDrawable(m_Sprite);
 	attachComponent(renderer);
@@ -28,7 +30,7 @@ void MainMenuScreen::initialize()
 	attachChild(TextBox);
 	TextBox->setPosition(0, -50);
 	TextBox->setSize(50);
-	TextBox->setText("Are you sure you want \n \tto quit the game?");
+	TextBox->setText("Are you sure \n \tyou want to\n \t quit the game?");
 
 	setEnabled(false);
 

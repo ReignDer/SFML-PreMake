@@ -16,6 +16,7 @@ void UIButton::initialize()
 	m_Sprite->setTexture(*m_NormalTexture);
 	sf::Vector2u textureSize= m_Sprite->getTexture()->getSize();
 	m_Sprite->setOrigin(textureSize.x / 2, textureSize.y / 2);
+	m_Sprite->setScale(0.8, 0.8);
 
 	auto renderer = new Core::RendererComponent("Button");
 	renderer->assignDrawable(m_Sprite);

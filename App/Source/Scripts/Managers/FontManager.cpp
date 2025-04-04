@@ -12,7 +12,7 @@ FontManager* FontManager::getInstance()
 
 void FontManager::loadAll()
 {
-    loadFont("default", "Media/Sansation.ttf");
+    loadFont("default", "Media/Pixeloid.ttf");
 }
 
 void FontManager::loadFont(const std::string& key, const std::string& path)
