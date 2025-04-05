@@ -1,12 +1,14 @@
 #include "SpriteChange.h"
 
+#include "Scripts/Entity/Entities/Player.h"
+
 SpriteChange::SpriteChange(const std::string& name) : Core::AbstractComponent(name, Script)
 {
 }
 
 void SpriteChange::perform()
 {
-	auto atlas = (AtlasEntity*)getOwner();
+	auto atlas = static_cast<Player*>(getOwner());
 	auto values = atlas->getValues();
 	m_Ticks += timestep.asSeconds();
 

@@ -2,6 +2,8 @@
 
 #include <algorithm>
 
+#include "Scripts/Components/SpriteChange.h"
+
 
 Player::Player(std::string name) : Core::Entity(name), CollisionListener()
 {
@@ -84,6 +86,9 @@ void Player::initialize()
 	auto renderer = new Core::RendererComponent("PlayerSprite");
 	renderer->assignDrawable(m_Sprite);
 	attachComponent(renderer);
+
+	auto spriteAnimation = new SpriteChange("Charlie");
+	attachComponent(spriteAnimation);
 	
 	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
 }
