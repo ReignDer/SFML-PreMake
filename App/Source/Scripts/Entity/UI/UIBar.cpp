@@ -73,7 +73,7 @@ void UIBar::initialize()
 
 void UIBar::OnButtonClick(UIButton* button)
 {
-	
+	SFXManager::getInstance()->play("Click");
 	Core::EntityManager::getInstance()->findObjectByName("MainMenuScreen")->setEnabled(true);
 	Core::Core::Get().PauseApplication();
 }

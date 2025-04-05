@@ -6,6 +6,7 @@
 #include "Scripts/Components/UIComponents/ScoreCounter.h"
 #include "Scripts/Components/UIComponents/BonusCounter.h"
 #include "Scripts/Components/UIComponents/StageCounter.h"
+#include "Scripts/Managers/SFXManager.h"
 
 class UIBar : public Core::Entity, public IButtonListener
 {

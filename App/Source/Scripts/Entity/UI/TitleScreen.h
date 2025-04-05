@@ -1,6 +1,7 @@
 #pragma once
 #include "Builder.h"
 #include "Scripts/Managers/TextureManager.h"
+#include "Scripts/Managers/SFXManager.h"
 #include "UIButton.h"
 #include "UIText.h"
 class TitleScreen : public Core::Entity, public IButtonListener

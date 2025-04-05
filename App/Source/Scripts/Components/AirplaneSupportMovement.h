@@ -5,6 +5,8 @@
 #include "Scripts/Poolables/EntityPool.h"
 #include "Scripts/Components/PlayerInputController.h"
 #include "Scripts/Managers/ObjectPoolHolder.h"
+#include "Scripts/Managers/SFXManager.h"
+
 class AirplaneSupportMovement : public Core::AbstractComponent
 {
 public:

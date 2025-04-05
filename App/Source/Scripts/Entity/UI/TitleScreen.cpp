@@ -61,11 +61,13 @@ void TitleScreen::OnButtonClick(UIButton* button)
 void TitleScreen::OnButtonReleased(UIButton* button)
 {
 	if (button->getName() == "button_1") {
+		SFXManager::getInstance()->play("Applause");
 		LOG("CLICK");
 		Core::Core::Get().ResumeApplication();
 		Core::SceneManager::getInstance()->loadScene(Core::SceneManager::GAME_SCENE_NAME);
 	}
 	if (button->getName() == "button_2") {
+		SFXManager::getInstance()->play("Quit");
 		Core::Core::Get().ApplicationQuit();
 	}
 }

@@ -69,13 +69,13 @@ void MainMenuScreen::initialize()
 
 void MainMenuScreen::OnButtonClick(UIButton* button)
 {
-
-
+	SFXManager::getInstance()->play("Click");
 }
 
 void MainMenuScreen::OnButtonReleased(UIButton* button)
 {
 	if (button->getName() == "button_1") {
+		
 		Core::SceneManager::getInstance()->loadScene(Core::SceneManager::TITLE_SCENE_NAME);
 	}
 	if (button->getName() == "button_2") {

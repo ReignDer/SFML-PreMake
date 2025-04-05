@@ -41,8 +41,8 @@ void AirplaneSupportMovement::perform()
 		playerTransformable->move(0,-15.f);
 		this->getOwner()->addForce({0,-9000.f});
 		//this->getOwner()->resetForce();
-		
-		
+
+		SFXManager::getInstance()->play("Jump");
 	}
 
 	if (input->hasFire() && m_Ticks > BULLET_SPAWN_INTERVAL) {

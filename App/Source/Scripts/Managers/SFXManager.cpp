@@ -23,12 +23,11 @@ void SFXManager::deleteResources()
 
 void SFXManager::loadAll()
 {
-
-    loadSFX("SFX_1", "Media/SFX/EnemyGunFire.wav");
-    loadSFX("SFX_2", "Media/SFX/Explosion1.wav");
-    loadSFX("SFX_3", "Media/SFX/Explosion2.wav");
-    loadSFX("SFX_4", "Media/SFX/LaunchMissile.wav");
-
+    loadSFX("Jump", "Media/SFX/Jump.wav");
+    loadSFX("Applause", "Media/SFX/Applause.wav");
+    loadSFX("Quit", "Media/SFX/Quit.wav");
+    loadSFX("Hit", "Media/SFX/Hit.wav");
+    loadSFX("Click", "Media/SFX/Click.wav");
 }
 
 void SFXManager::loadSFX(std::string key, std::string path)
