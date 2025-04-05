@@ -14,6 +14,7 @@ void SpriteChange::perform()
 
 	if (Core::Input::IsKeyPressed(sf::Keyboard::A) && m_Ticks > 0.16f) {
 		reset();
+		if (!atlas->m_ColliderActive) return;
 		currentIndex--;
 		if (currentIndex < 0) {
 			currentIndex = 1;
@@ -23,6 +24,7 @@ void SpriteChange::perform()
 
 	if (Core::Input::IsKeyPressed(sf::Keyboard::D) && m_Ticks > 0.16f) {
 		reset();
+		if (!atlas->m_ColliderActive) return;
 		currentIndex++;
 		if (currentIndex > values.size() - 1) {
 			currentIndex = 2;

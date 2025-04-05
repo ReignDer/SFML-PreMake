@@ -1,24 +1,18 @@
-#include "Player.h"
+#include "FirePots.h"
 
-#include <algorithm>
+#include "Scripts/Components/FirePotAnimation.h"
 
-#include "Scripts/Components/LionAnimation.h"
-#include "Scripts/Components/SpriteChange.h"
-
-
-Player::Player(std::string name) : Core::Entity(name), CollisionListener()
+FirePots::FirePots(std::string name) : Core::Entity(name), CollisionListener()
 {
 }
 
-Player::~Player()
+FirePots::~FirePots()
 {
-	//Core::PhysicsManager::getInstance()->untrackObject(m_Collider);
 }
 
-void Player::initialize()
+void FirePots::initialize()
 {
-	std::cout << name;
-	m_Sprite = std::make_shared<sf::Sprite>();
+    m_Sprite = std::make_shared<sf::Sprite>();
 	m_Sprite->setTexture(*TextureManager::getInstance()->getTexture("CircusSheet"));
 	sf::Vector2u textureSize = m_Sprite->getTexture()->getSize();
 	m_Sprite->setOrigin((float)textureSize.x / 2, (float)textureSize.y / 2);
@@ -36,8 +30,7 @@ void Player::initialize()
 			const rapidjson::Value& frameValue = it->value;
 
 			//LOG(name);
-			if (name == "sprite300" || name == "sprite301" || name == "sprite302" || name == "sprite303" || name == "sprite304"
-			|| name == "sprite305" || name == "sprite306" || name == "sprite307"){
+			if (name == "sprite329" || name == "sprite330"){
 				if (frameValue.HasMember("frame") && frameValue["frame"].IsObject()) {
 					const rapidjson::Value& frame = frameValue["frame"];
 					int x = frame["x"].GetInt();
@@ -70,67 +63,33 @@ void Player::initialize()
 		}
 	}
 
-	m_Sprite->setScale(5.f,5.f);
-	m_Sprite->setTextureRect(values[6]);
+	m_Sprite->setScale(3.f,3.f);
+	m_Sprite->setTextureRect(values[0]);
 	m_Border = m_Sprite->getGlobalBounds();
-	m_Sprite->setPosition(250, 250);
+	m_Sprite->setPosition(500, 200);
 	m_Sprite->setRotation(0.0f);
 	
-
+	auto renderer = new Core::RendererComponent("FirePotsRenderer");
+	renderer->assignDrawable(m_Sprite);
+	attachComponent(renderer);
+	
 	m_Collider = new Core::ColliderComponent("Collider");
 	m_Collider->setLocalBounds(m_Sprite->getGlobalBounds());
 	m_Collider->setCollisionListener(this);
 	attachComponent(m_Collider);
 
-	auto inputController = new PlayerInputController("PlayerInput");
-	attachComponent(inputController);
-
-	auto movement = new AirplaneSupportMovement("PlayerMovement");
-	attachComponent(movement);
-
-	auto renderer = new Core::RendererComponent("PlayerSprite");
-	renderer->assignDrawable(m_Sprite);
-	attachComponent(renderer);
-
-	auto spriteAnimation = new LionAnimation("Charlie");
-	attachComponent(spriteAnimation);
-	
-	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
+	auto firepotAnimation = new FirePotAnimation("FirePotAnimation");
+	attachComponent(firepotAnimation);
 }
 
-void Player::OnCollisionEnter(Entity* entity)
+void FirePots::OnCollisionEnter(Entity* entity)
 {
-	if (entity->getName().find("Floor") != std::string::npos)
-	{
-		m_ColliderActive = true;
-		
-	}
 }
 
-void Player::OnCollisionExit(Entity* entity)
+void FirePots::OnCollisionExit(Entity* entity)
 {
-	if (entity->getName().find("Floor") != std::string::npos)
-	{
-		m_ColliderActive = false;
-		
-	}
 }
 
-void Player::OnCollisionStay(Entity* entity)
+void FirePots::OnCollisionStay(Entity* entity)
 {
-	if (entity->getName().find("Floor") != std::string::npos)
-	{
-		m_ColliderActive = true;
-		//m_Velocity.y = 0.0f;
-		//m_Acceleration.y = 0.0f;
-		//float overlap = this->m_Transformable.getPosition().y + this->m_Border.height - entity->m_Position.y;
-
-		// Move the player up by the amount of overlap to ensure it's on top of the floor
-		//if (overlap > 0)
-		//{
-		//	this->m_Transformable.move(0.0f, -overlap);
-		//}
-	}
 }
-
-

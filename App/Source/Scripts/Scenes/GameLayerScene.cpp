@@ -1,6 +1,9 @@
 #include "GameLayerScene.h"
 
+#include "Scripts/Entity/Entities/BigRing.h"
+#include "Scripts/Entity/Entities/FirePots.h"
 #include "Scripts/Entity/Entities/Floor.h"
+#include "Scripts/Entity/Entities/SmallRing.h"
 
 GameLayerScene::GameLayerScene() : AbstractScene("GameScene")
 {
@@ -39,7 +42,15 @@ void GameLayerScene::OnLoadObjects()
 	auto support1 = new AirplaneSupport("support1");
 	player->attachChild(support1);
 	support1->setPosition(0, -100);
-	
+
+	auto FirePot = new FirePots("FirePots");
+	registerEntity(FirePot);
+
+	auto smallRing = new SmallRing("SmallRing");
+	registerEntity(smallRing);
+
+	auto bigRing = new BigRing("BigRing");
+	registerEntity(bigRing);
 
 	auto enemiesManager = new Core::EmptyEntity("EnemiesManager");
 	auto swarmHandler = new EnemySwarmHandler(3, "swarmHandler", enemiesManager);
