@@ -52,11 +52,11 @@ namespace Core
                 
                 float mag2 = (mag2Vec.x * mag2Vec.x) + (mag2Vec.y * mag2Vec.y);
                 float magnitude = sqrt(mag2);
-                LOG((*b)->m_Position.y);
+                //LOG((*b)->m_Position.y);
                 if (!aBoundsFR.intersects(bBoundsFR)) continue;
                 //LOG("COllider");
                 sf::Vector2f dir = (magnitude != 0) ? sf::Vector2f((mag2Vec.x / magnitude),
-                (-mag2Vec.y / magnitude)): sf::Vector2f(0, 0);
+                (mag2Vec.y / magnitude)): sf::Vector2f(0, 0);
                 
                 float overlapX = (aBoundsFR.left + aBoundsFR.width) - bBoundsFR.left;
                 float overlapY = (aBoundsFR.top + aBoundsFR.height) - bBoundsFR.top;

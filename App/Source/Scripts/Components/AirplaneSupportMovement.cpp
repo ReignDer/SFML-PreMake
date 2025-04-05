@@ -27,14 +27,24 @@ void AirplaneSupportMovement::perform()
 		movement.y += 1;
 
 	}
-	if (Core::Input::IsKeyPressed(sf::Keyboard::D)) {
+	m_Ticks += timestep.asSeconds();
+	if (Core::Input::IsKeyPressed(sf::Keyboard::D) && player->m_ColliderActive) {
 		movement.x += 1;
 
 	}
-	if (Core::Input::IsKeyPressed(sf::Keyboard::A)) {
+	else if (Core::Input::IsKeyPressed(sf::Keyboard::A) && player->m_ColliderActive) {
 		movement.x -= 1;
 	}
-	m_Ticks += timestep.asSeconds();
+
+	else if (Core::Input::IsKeyPressed(sf::Keyboard::Space) && player->m_ColliderActive && m_Ticks > BULLET_SPAWN_INTERVAL)
+	{
+		playerTransformable->move(0,-15.f);
+		this->getOwner()->addForce({0,-9000.f});
+		//this->getOwner()->resetForce();
+		
+		
+	}
+
 	if (input->hasFire() && m_Ticks > BULLET_SPAWN_INTERVAL) {
 		auto m_ProjectilePool = ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::PROJECTILE_POOL_TAG);
 		m_Ticks = 0.0f;

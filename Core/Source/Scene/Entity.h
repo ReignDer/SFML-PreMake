@@ -70,12 +70,13 @@ namespace Core{
 		bool hasGravity = false;
 		std::shared_ptr<sf::Sprite> m_Sprite;
 		sf::FloatRect m_Border;
+		void resetForce();
 	
 	protected:
 		
 		void UpdatePosition(const sf::Time& timestep);
 		void UpdateVelocity(const sf::Time& timestep);
-		void resetForce();
+		
 
 		sf::Vector2f m_AccumulatedForce;
 		

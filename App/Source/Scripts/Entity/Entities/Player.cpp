@@ -47,7 +47,7 @@ void Player::OnCollisionEnter(Entity* entity)
 	if (entity->getName().find("Floor") != std::string::npos)
 	{
 		m_ColliderActive = true;
-		LOG("COLLISION");
+		
 	}
 }
 
@@ -55,7 +55,8 @@ void Player::OnCollisionExit(Entity* entity)
 {
 	if (entity->getName().find("Floor") != std::string::npos)
 	{
-		//m_ColliderActive = false;
+		m_ColliderActive = false;
+		
 	}
 }
 
@@ -63,6 +64,7 @@ void Player::OnCollisionStay(Entity* entity)
 {
 	if (entity->getName().find("Floor") != std::string::npos)
 	{
+		m_ColliderActive = true;
 		//m_Velocity.y = 0.0f;
 		//m_Acceleration.y = 0.0f;
 		//float overlap = this->m_Transformable.getPosition().y + this->m_Border.height - entity->m_Position.y;
