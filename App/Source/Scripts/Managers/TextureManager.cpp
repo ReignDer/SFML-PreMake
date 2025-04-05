@@ -46,11 +46,12 @@ void TextureManager::loadGame()
     loadTexture("projectile", "Media/Bullet.png");
     loadTexture("Circus_bg", "Media/Circus_bg.png");
     loadTexture("life", "Media/life.png");
+    loadTexture("CircusSheet", "Media/CircusCharlieSheet1.png");
 }
 
 void TextureManager::parseJSON()
 {
-    FILE* file = fopen("Media/Dota2.json", "rb");
+    FILE* file = fopen("Media/sprites.json", "rb");
 
     assert(file != 0);
     LOG("SUCCESS");

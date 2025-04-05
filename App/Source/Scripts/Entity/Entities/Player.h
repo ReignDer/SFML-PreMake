@@ -14,10 +14,12 @@ public:
 	void OnCollisionExit(Entity* entity) override;
 	void OnCollisionStay(Entity* entity) override;
 	bool m_ColliderActive = false;
-	
+	std::vector<sf::IntRect> getValues() { return values; }
 private:
 	float m_PlayerSpeed = 300.f;
 	Core::ColliderComponent* m_Collider = nullptr;
+	rapidjson::Document doc;
+	std::vector<sf::IntRect> values;
 	
 };
 
