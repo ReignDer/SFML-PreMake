@@ -48,6 +48,8 @@ namespace Core {
 							m_TrackedObjects[j]->addCollision(m_TrackedObjects[i]);
 							m_TrackedObjects[j]->collisionEnter(m_TrackedObjects[i]->getOwner());
 						}
+						m_TrackedObjects[j]->addCollision(m_TrackedObjects[i]);
+						m_TrackedObjects[j]->collisionStay(m_TrackedObjects[i]->getOwner());
 					}
 					else {
 						if (m_TrackedObjects[i]->hasCollisionWith(m_TrackedObjects[j])) {

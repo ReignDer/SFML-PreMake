@@ -57,7 +57,7 @@ void AirplaneSupportMovement::perform()
 	//double angle = std::atan2f(movement.x, -movement.y) * 180.0f / 3.14159f;
 	////m_Sprite->move(movement * timestep.asSeconds() * m_PlayerSpeed);
 	playerTransformable->move(movement * timestep.asSeconds() * SPEED);
-
+	//LOG(playerTransformable->getPosition().y);
 
 	//if (movement != sf::Vector2f(0.0f, 0.0f))
 	//	playerTransformable->setRotation(angle);

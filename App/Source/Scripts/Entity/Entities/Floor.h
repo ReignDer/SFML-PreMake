@@ -11,8 +11,8 @@ public:
 
     void OnCollisionEnter(Entity* entity) override;
     void OnCollisionExit(Entity* entity) override;
+    void OnCollisionStay(Entity* entity) override;
 
 private:
-    std::shared_ptr<sf::RectangleShape> rect;
     Core::ColliderComponent* m_Collider = nullptr;
 };

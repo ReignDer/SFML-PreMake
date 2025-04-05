@@ -17,6 +17,7 @@ public:
 
 	virtual void OnCollisionEnter(Core::Entity* entity) override;
 	virtual void OnCollisionExit(Core::Entity* entity) override;
+	virtual void OnCollisionStay(Entity* entity) override;
 
 private:
 

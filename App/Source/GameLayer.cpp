@@ -20,7 +20,7 @@ void GameLayer::OnAttach()
 	srand(time(nullptr));
 
 	m_ActiveScene = std::make_shared<Core::Scene>();
-	Core::PhysicsWorld::getInstance()->SetGravity(9.f);
+	Core::PhysicsWorld::getInstance()->SetGravity(9.8f);
 	Core::SceneManager::getInstance()->registerScene(new GameLayerScene);
 	Core::SceneManager::getInstance()->registerScene(new TitleScene);
 	Core::SceneManager::getInstance()->registerScene(new MainMenuScene);

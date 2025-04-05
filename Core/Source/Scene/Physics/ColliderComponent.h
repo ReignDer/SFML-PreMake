@@ -20,6 +20,7 @@ namespace Core {
 		void setLocalBounds(sf::FloatRect localBounds);
 		void collisionEnter(Entity* entity);
 		void collisionExit(Entity* entity);
+		void collisionStay(Entity* entity);
 
 		void perform();
 		void clearCollisions();

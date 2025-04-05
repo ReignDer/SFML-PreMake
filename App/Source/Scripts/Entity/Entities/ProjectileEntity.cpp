@@ -56,3 +56,7 @@ void ProjectileEntity::OnCollisionEnter(Core::Entity* entity)
 void ProjectileEntity::OnCollisionExit(Core::Entity* entity)
 {
 }
+
+void ProjectileEntity::OnCollisionStay(Core::Entity* entity)
+{
+}

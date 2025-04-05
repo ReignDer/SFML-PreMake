@@ -8,6 +8,6 @@ namespace Core {
 		EmptyEntity(const std::string& name);
 		virtual ~EmptyEntity();
 		virtual void initialize() override;
-
+		
 	};
 }

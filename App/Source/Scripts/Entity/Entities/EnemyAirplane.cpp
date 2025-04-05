@@ -62,4 +62,8 @@ void EnemyAirplane::OnCollisionExit(Core::Entity* entity)
 {
 }
 
+void EnemyAirplane::OnCollisionStay(Entity* entity)
+{
+}
+
 

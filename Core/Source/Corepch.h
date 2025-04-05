@@ -7,5 +7,6 @@
 #include <functional>
 #include <unordered_map>
 #include <unordered_set>
+#include <algorithm>
 
 #define LOG(x) std::cout<<x<<std::endl;

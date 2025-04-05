@@ -63,10 +63,14 @@ namespace Core{
 		float m_Mass = 1.0f;
 		sf::Vector2f m_Velocity;
 		sf::Vector2f m_Acceleration;
+		sf::Vector2f m_Position;
+		float m_Restitution = 0.f;
 		bool moveable = false;
 		float damping = 0.9f;
 		bool hasGravity = false;
-
+		std::shared_ptr<sf::Sprite> m_Sprite;
+		sf::FloatRect m_Border;
+	
 	protected:
 		
 		void UpdatePosition(const sf::Time& timestep);
@@ -74,14 +78,14 @@ namespace Core{
 		void resetForce();
 
 		sf::Vector2f m_AccumulatedForce;
-		sf::Vector2f m_Position;
+		
 
 	protected:
 		void setParent(Entity* entity) { m_Parent = entity; }
 
 	protected:
 		std::unique_ptr<sf::Texture> m_Texture;
-		std::shared_ptr<sf::Sprite> m_Sprite;
+		
 		std::string name;
 		Entity* m_Parent;
 		bool m_Enabled = true;

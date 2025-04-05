@@ -22,7 +22,9 @@ void Player::initialize()
 	m_Sprite->setPosition(250, 250);
 	m_Sprite->setRotation(0.0f);
 
-	m_Collider = new Core::ColliderComponent("PlayerCollider");
+	m_Border = m_Sprite->getGlobalBounds();
+
+	m_Collider = new Core::ColliderComponent("Collider");
 	m_Collider->setLocalBounds(m_Sprite->getGlobalBounds());
 	m_Collider->setCollisionListener(this);
 	attachComponent(m_Collider);
@@ -36,6 +38,7 @@ void Player::initialize()
 	auto renderer = new Core::RendererComponent("PlayerSprite");
 	renderer->assignDrawable(m_Sprite);
 	attachComponent(renderer);
+	
 	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
 }
 
@@ -44,6 +47,7 @@ void Player::OnCollisionEnter(Entity* entity)
 	if (entity->getName().find("Floor") != std::string::npos)
 	{
 		m_ColliderActive = true;
+		LOG("COLLISION");
 	}
 }
 
@@ -55,6 +59,20 @@ void Player::OnCollisionExit(Entity* entity)
 	}
 }
 
+void Player::OnCollisionStay(Entity* entity)
+{
+	if (entity->getName().find("Floor") != std::string::npos)
+	{
+		//m_Velocity.y = 0.0f;
+		//m_Acceleration.y = 0.0f;
+		//float overlap = this->m_Transformable.getPosition().y + this->m_Border.height - entity->m_Position.y;
 
+		// Move the player up by the amount of overlap to ensure it's on top of the floor
+		//if (overlap > 0)
+		//{
+		//	this->m_Transformable.move(0.0f, -overlap);
+		//}
+	}
+}
 
 

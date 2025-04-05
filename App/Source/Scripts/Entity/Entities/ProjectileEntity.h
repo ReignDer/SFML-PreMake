@@ -17,6 +17,7 @@ public:
 
 	virtual void OnCollisionEnter(Core::Entity* entity) override;
 	virtual void OnCollisionExit(Core::Entity* entity) override;
+	virtual void OnCollisionStay(Core::Entity* entity) override;
 
 private:
 	ProjectileMovement* m_ProjectileMovement = nullptr;

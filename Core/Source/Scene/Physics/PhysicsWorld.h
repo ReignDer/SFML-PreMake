@@ -1,4 +1,5 @@
 #pragma once
+#include "ContactResolver.h"
 #include "ForceRegistry.h"
 #include "GravityForceGenerator.h"
 #include "Scene/Entity.h"
@@ -8,6 +9,10 @@ namespace Core
 {
     class PhysicsWorld : sf::NonCopyable
     {
+    protected:
+        ContactResolver contactResolver = ContactResolver(20);
+        void GenerateContacts();
+        void GetOverlaps();
     public:
         static PhysicsWorld* getInstance();
         std::list<Entity*> m_Entities;
@@ -16,6 +21,11 @@ namespace Core
         void deleteAllObjectInScene();
         void SetGravity(float gravity);
         void UpdateEntityList();
+        
+        std::vector<EntityContact*> Contacts;
+        void AddContact(Entity* e1, Entity* e2, float restitution, sf::Vector2f contactNormal);
+        void AddContact(Entity* e1, Entity* e2, float restitution, sf::Vector2f contactNormal, float depth);
+    
 
     public:
         ForceRegistry forceRegistry;

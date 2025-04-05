@@ -6,6 +6,7 @@ namespace Core {
 	public:
 		virtual void OnCollisionEnter(Entity* entity) = 0;
 		virtual void OnCollisionExit(Entity* entity) = 0;
+		virtual void OnCollisionStay(Entity* entity) = 0;
 
 	protected:
 		CollisionListener() {}

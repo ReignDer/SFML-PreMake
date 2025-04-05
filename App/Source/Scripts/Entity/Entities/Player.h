@@ -12,6 +12,7 @@ public:
 	void initialize() override;
 	void OnCollisionEnter(Entity* entity) override;
 	void OnCollisionExit(Entity* entity) override;
+	void OnCollisionStay(Entity* entity) override;
 	bool m_ColliderActive = false;
 	
 private:

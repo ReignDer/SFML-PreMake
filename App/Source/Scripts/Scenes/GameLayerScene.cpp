@@ -22,14 +22,18 @@ void GameLayerScene::OnLoadObjects()
 	registerEntity(bgObject);
 
 	auto floor = new Floor("Floor");
+	floor->m_Mass = 1.f;
 	registerEntity(floor);
+	Core::PhysicsWorld::getInstance()->addEntity(floor);
+	
 
 	auto player = new Player("Player");
 	player->m_Mass = 30.f;
 	player->hasGravity = true;
 	player->moveable = true;
-	Core::PhysicsWorld::getInstance()->addEntity(player);
+
 	registerEntity(player);
+	Core::PhysicsWorld::getInstance()->addEntity(player);
 
 	
 
@@ -55,7 +59,6 @@ void GameLayerScene::OnLoadObjects()
 
 	auto menu = new MainMenuScreen("MainMenuScreen");
 	registerEntity(menu);
-
 	
 }
 

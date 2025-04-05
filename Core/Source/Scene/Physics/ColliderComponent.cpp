@@ -52,6 +52,12 @@ namespace Core {
 			m_Listener->OnCollisionExit(entity);
 		}
 	}
+	void ColliderComponent::collisionStay(Entity* entity)
+	{
+		if (m_Listener != nullptr) {
+			m_Listener->OnCollisionStay(entity);
+		}
+	}
 	void ColliderComponent::perform()
 	{
 	}
