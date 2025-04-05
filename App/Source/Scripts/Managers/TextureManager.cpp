@@ -45,6 +45,7 @@ void TextureManager::loadGame()
     loadTexture("PopUP", "Media/PopUP.png");
     loadTexture("projectile", "Media/Bullet.png");
     loadTexture("Circus_bg", "Media/Circus_bg.png");
+    loadTexture("life", "Media/life.png");
 }
 
 void TextureManager::parseJSON()

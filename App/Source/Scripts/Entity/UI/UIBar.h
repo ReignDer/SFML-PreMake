@@ -3,6 +3,10 @@
 #include "Scripts/Entity/Interfaces/ButtonListener.h"
 #include "Scripts/Managers/Managers.h"
 #include "Scripts/Entity/Entities.h"
+#include "Scripts/Components/UIComponents/ScoreCounter.h"
+#include "Scripts/Components/UIComponents/BonusCounter.h"
+#include "Scripts/Components/UIComponents/StageCounter.h"
+
 class UIBar : public Core::Entity, public IButtonListener
 {
 public:

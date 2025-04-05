@@ -11,7 +11,7 @@ void BGObject::initialize()
 	sf::Vector2u textureSize = m_Sprite->getTexture()->getSize();
 
 	m_Sprite->setScale(0.2,0.2);
-	m_Sprite->setPosition(10, 0);
+	m_Sprite->setPosition(-5, 0);
 	m_Sprite->setTextureRect(sf::IntRect(0, 0, textureSize.x, textureSize.y));
 
 	auto bgMovement = new BGMovement("BGMovement");

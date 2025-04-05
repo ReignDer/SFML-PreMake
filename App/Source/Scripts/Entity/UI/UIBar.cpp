@@ -38,11 +38,37 @@ void UIBar::initialize()
 	button1Text->setSize(100);
 	button1Text->setText("QUIT");
 
-	auto stageText = new UIText("text_2");
+
+
+	auto scoreText = new UIText("score");
+	attachChild(scoreText);
+	scoreText->setPosition(-150, 0);
+	scoreText->setSize(20);
+	scoreText->setText("1P-000000");
+
+	auto scoreCounter = new ScoreCounter("scc", scoreText);
+	attachComponent(scoreCounter);
+
+	auto bonusText  = new UIText("bonus");
+	attachChild(bonusText);
+	bonusText->setPosition(0, 0);
+	bonusText->setSize(20);
+	bonusText->setText("BONUS-5000");
+
+	auto bonusCounter = new BonusCounter("bc", bonusText);
+	attachComponent(bonusCounter);
+
+	auto stageText = new UIText("stage");
 	attachChild(stageText);
-	stageText->setPosition(0, 0);
+	stageText->setPosition(150, 0);
 	stageText->setSize(20);
-	stageText->setText("Stage-0X");
+	stageText->setText("Stage-01");
+
+	auto stageCounter = new StageCounter("stc", stageText);
+	attachComponent(stageCounter);
+
+	//std::shared_ptr<sf::Texture> lifetexture = TextureManager::getInstance()->getTexture("life");
+	//auto button1 = new UIButton("lc", lifetexture, pressedButton);
 }
 
 void UIBar::OnButtonClick(UIButton* button)

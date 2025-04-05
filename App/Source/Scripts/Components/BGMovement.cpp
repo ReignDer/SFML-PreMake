@@ -17,9 +17,9 @@ void BGMovement::perform()
 	offset.x -= SPEED_MULTIPLIER;
 	bgTransformable->move(offset * timestep.asSeconds());
 	sf::Vector2f localPos = bgTransformable->getPosition();
-
-	if (-localPos.x * timestep.asSeconds() > 11.2f)
-		bgTransformable->setPosition(0, 0);
+	
+	if (localPos.x <= -850)
+		bgTransformable->setPosition(-5, 0);
 
 
 }
