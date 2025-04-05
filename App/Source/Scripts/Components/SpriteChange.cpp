@@ -1,5 +1,6 @@
 #include "SpriteChange.h"
 
+#include "Scripts/Entity/Entities/AirplaneSupport.h"
 #include "Scripts/Entity/Entities/Player.h"
 
 SpriteChange::SpriteChange(const std::string& name) : Core::AbstractComponent(name, Script)
@@ -8,13 +9,14 @@ SpriteChange::SpriteChange(const std::string& name) : Core::AbstractComponent(na
 
 void SpriteChange::perform()
 {
-	auto atlas = static_cast<Player*>(getOwner());
+	auto atlas = static_cast<AirplaneSupport*>(getOwner());
+	auto player = static_cast<Player*>(getOwner());
 	auto values = atlas->getValues();
 	m_Ticks += timestep.asSeconds();
 
 	if (Core::Input::IsKeyPressed(sf::Keyboard::A) && m_Ticks > 0.16f) {
 		reset();
-		if (!atlas->m_ColliderActive) return;
+		//if (!player->m_ColliderActive) return;
 		currentIndex--;
 		if (currentIndex < 0) {
 			currentIndex = 1;
@@ -24,7 +26,7 @@ void SpriteChange::perform()
 
 	if (Core::Input::IsKeyPressed(sf::Keyboard::D) && m_Ticks > 0.16f) {
 		reset();
-		if (!atlas->m_ColliderActive) return;
+		//if (!player->m_ColliderActive) return;
 		currentIndex++;
 		if (currentIndex > values.size() - 1) {
 			currentIndex = 2;
