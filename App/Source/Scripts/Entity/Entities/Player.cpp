@@ -70,7 +70,7 @@ void Player::initialize()
 		}
 	}
 
-	m_Sprite->setScale(5.f,5.f);
+	m_Sprite->setScale(2.3f,2.3f);
 	m_Sprite->setTextureRect(values[6]);
 	m_Border = m_Sprite->getGlobalBounds();
 	m_Sprite->setPosition(250, 250);

@@ -1,13 +1,19 @@
 #pragma once
 #include "Builder.h"
 #include "Scripts/Managers/TextureManager.h"
+#include "Scripts/Poolables/EntityPoolable.h"
 
-class FirePots : public Core::Entity, public Core::CollisionListener
+class FirePots : public EntityPoolable, public Core::CollisionListener
 {
 public:
     FirePots(std::string name);
     virtual ~FirePots();
-    void initialize() override;
+    virtual void initialize() override;
+    virtual void OnRelease() override;
+    virtual void OnActivate() override;
+
+    virtual EntityPoolable* clone() override { return new FirePots(name); }
+    
     void OnCollisionEnter(Entity* entity) override;
     void OnCollisionExit(Entity* entity) override;
     void OnCollisionStay(Entity* entity) override;

@@ -1,9 +1,10 @@
 #include "SmallRing.h"
 
 #include "Scripts/Components/SmallRingAnimation.h"
+#include "Scripts/Components/SmallRingMovement.h"
 
 
-SmallRing::SmallRing(std::string name) : Core::Entity(name), Core::CollisionListener()
+SmallRing::SmallRing(std::string name) : EntityPoolable(name), Core::CollisionListener()
 {
 }
 
@@ -64,7 +65,7 @@ void SmallRing::initialize()
 		}
 	}
 
-	m_Sprite->setScale(3.f,3.f);
+	m_Sprite->setScale(2.3f,2.3f);
 	m_Sprite->setTextureRect(values[0]);
 	m_Border = m_Sprite->getGlobalBounds();
 	m_Sprite->setPosition(500, 100);
@@ -81,6 +82,22 @@ void SmallRing::initialize()
 
 	auto smallRingAnimation = new SmallRingAnimation("SmallRingAnimation");
 	attachComponent(smallRingAnimation);
+
+	auto smallRingMovement = new SmallRingMovement("SmallRingMovement");
+	attachComponent(smallRingMovement);
+}
+
+void SmallRing::OnRelease()
+{
+	Core::PhysicsManager::getInstance()->untrackObject(m_Collider);
+}
+
+void SmallRing::OnActivate()
+{
+	auto movement = (SmallRingMovement*)findComponentByName("SmallRingMovement");
+	movement->configure(rand() % 50);
+	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
+	setPosition(Core::Core::Get().GetWindow().GetWidth(), 150);
 }
 
 void SmallRing::OnCollisionEnter(Entity* entity)

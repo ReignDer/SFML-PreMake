@@ -10,6 +10,9 @@ class ObjectPoolHolder : private sf::NonCopyable
 public:
 	static const std::string ENEMY_POOL_TAG;
 	static const std::string PROJECTILE_POOL_TAG;
+	static const std::string BIGRING_POOL_TAG;
+	static const std::string SMALLRING_POOL_TAG;
+	static const std::string FIREPOT_POOL_TAG;
 	static ObjectPoolHolder* getInstance();
 
 	void registerObjectPool(EntityPool* pool);

@@ -1,8 +1,9 @@
 #include "BigRing.h"
 
 #include "Scripts/Components/BigRingAnimation.h"
+#include "Scripts/Components/BigRingMovement.h"
 
-BigRing::BigRing(std::string name) : Core::Entity(name), Core::CollisionListener()
+BigRing::BigRing(std::string name) : EntityPoolable(name), Core::CollisionListener()
 {
 }
 
@@ -63,7 +64,7 @@ void BigRing::initialize()
 		}
 	}
 
-	m_Sprite->setScale(3.f,3.f);
+	m_Sprite->setScale(2.3f,2.3f);
 	m_Sprite->setTextureRect(values[0]);
 	m_Border = m_Sprite->getGlobalBounds();
 	m_Sprite->setPosition(400, 200);
@@ -80,6 +81,22 @@ void BigRing::initialize()
 
 	auto bigRingAnimation = new BigRingAnimation("BigRingAnimation");
 	attachComponent(bigRingAnimation);
+
+	auto bigRingMovement = new BigRingMovement("BigRingMovement");
+	attachComponent(bigRingMovement);
+}
+
+void BigRing::OnRelease()
+{
+	Core::PhysicsManager::getInstance()->untrackObject(m_Collider);
+}
+
+void BigRing::OnActivate()
+{
+	auto movement = (BigRingMovement*)findComponentByName("BigRingMovement");
+	movement->configure(rand() % 50);
+	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
+	setPosition(Core::Core::Get().GetWindow().GetWidth(), 72);
 }
 
 void BigRing::OnCollisionEnter(Entity* entity)

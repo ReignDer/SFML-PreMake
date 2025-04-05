@@ -1,5 +1,6 @@
 #include "GameLayerScene.h"
 
+#include "Scripts/Components/ObstacleHandler.h"
 #include "Scripts/Entity/Entities/BigRing.h"
 #include "Scripts/Entity/Entities/FirePots.h"
 #include "Scripts/Entity/Entities/Floor.h"
@@ -42,25 +43,22 @@ void GameLayerScene::OnLoadObjects()
 	auto support1 = new AirplaneSupport("support1");
 	player->attachChild(support1);
 	support1->setPosition(0, -100);
-
-	auto FirePot = new FirePots("FirePots");
-	registerEntity(FirePot);
-
-	auto smallRing = new SmallRing("SmallRing");
-	registerEntity(smallRing);
-
-	auto bigRing = new BigRing("BigRing");
-	registerEntity(bigRing);
+	
 
 	auto enemiesManager = new Core::EmptyEntity("EnemiesManager");
 	auto swarmHandler = new EnemySwarmHandler(3, "swarmHandler", enemiesManager);
 	enemiesManager->attachComponent(swarmHandler);
-	registerEntity(enemiesManager);
+	//registerEntity(enemiesManager);
 
 	auto projectilePool = new EntityPool(ObjectPoolHolder::PROJECTILE_POOL_TAG, new ProjectileEntity("projectile"),10,nullptr);
 	projectilePool->initialize();
 	ObjectPoolHolder::getInstance()->registerObjectPool(projectilePool);
 
+	auto obstacleManager = new Core::EmptyEntity("ObstacleManager");
+	auto obstacleHandler = new ObstacleHandler("ObstacleHander", 5, obstacleManager);
+	obstacleManager->attachComponent(obstacleHandler);
+	registerEntity(obstacleManager);
+	
 	auto uiBar = new UIBar("Bar");
 	registerEntity(uiBar);
 

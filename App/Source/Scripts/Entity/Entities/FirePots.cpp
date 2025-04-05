@@ -1,8 +1,9 @@
 #include "FirePots.h"
 
 #include "Scripts/Components/FirePotAnimation.h"
+#include "Scripts/Components/FirePotsMovement.h"
 
-FirePots::FirePots(std::string name) : Core::Entity(name), CollisionListener()
+FirePots::FirePots(std::string name) : EntityPoolable(name), CollisionListener()
 {
 }
 
@@ -63,7 +64,7 @@ void FirePots::initialize()
 		}
 	}
 
-	m_Sprite->setScale(3.f,3.f);
+	m_Sprite->setScale(2.3f,2.3f);
 	m_Sprite->setTextureRect(values[0]);
 	m_Border = m_Sprite->getGlobalBounds();
 	m_Sprite->setPosition(500, 200);
@@ -80,6 +81,22 @@ void FirePots::initialize()
 
 	auto firepotAnimation = new FirePotAnimation("FirePotAnimation");
 	attachComponent(firepotAnimation);
+
+	auto firePotsMovement = new FirePotsMovement("FirePotsMovement");
+	attachComponent(firePotsMovement);
+}
+
+void FirePots::OnRelease()
+{
+	Core::PhysicsManager::getInstance()->untrackObject(m_Collider);
+}
+
+void FirePots::OnActivate()
+{
+	auto movement = (FirePotsMovement*)findComponentByName("FirePotsMovement");
+	movement->configure(rand() % 50);
+	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
+	setPosition(Core::Core::Get().GetWindow().GetWidth(), 210);
 }
 
 void FirePots::OnCollisionEnter(Entity* entity)
