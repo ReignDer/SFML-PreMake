@@ -16,7 +16,7 @@ void SpriteChange::perform()
 		reset();
 		currentIndex--;
 		if (currentIndex < 0) {
-			currentIndex = values.size() - 1;
+			currentIndex = 1;
 		}
 		atlas->setSprite(values[currentIndex]);
 	}
@@ -25,7 +25,7 @@ void SpriteChange::perform()
 		reset();
 		currentIndex++;
 		if (currentIndex > values.size() - 1) {
-			currentIndex = 0;
+			currentIndex = 2;
 		}
 		atlas->setSprite(values[currentIndex]);
 	}

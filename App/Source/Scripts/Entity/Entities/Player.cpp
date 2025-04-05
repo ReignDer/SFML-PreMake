@@ -2,6 +2,7 @@
 
 #include <algorithm>
 
+#include "Scripts/Components/LionAnimation.h"
 #include "Scripts/Components/SpriteChange.h"
 
 
@@ -29,44 +30,48 @@ void Player::initialize()
 	if (doc.HasMember("frames") && doc["frames"].IsObject()) {
 		const rapidjson::Value& frames = doc["frames"];
 
-		for (rapidjson::Value::ConstMemberIterator it = frames.MemberBegin(); it != frames.MemberEnd(); it++) {
-			const char* name = it->name.GetString();
+		for (rapidjson::Value::ConstMemberIterator it = frames.MemberBegin(); it != frames.MemberEnd(); it++)
+		{
+			std::string name = it->name.GetString();
 			const rapidjson::Value& frameValue = it->value;
 
-			LOG(name);
-			if (frameValue.HasMember("frame") && frameValue["frame"].IsObject()) {
-				const rapidjson::Value& frame = frameValue["frame"];
-				int x = frame["x"].GetInt();
-				int y = frame["y"].GetInt();
-				int w = frame["w"].GetInt();
-				int h = frame["h"].GetInt();
+			//LOG(name);
+			if (name == "sprite301" || name == "sprite302" || name == "sprite303" || name == "sprite304"
+			|| name == "sprite305" || name == "sprite306"){
+				if (frameValue.HasMember("frame") && frameValue["frame"].IsObject()) {
+					const rapidjson::Value& frame = frameValue["frame"];
+					int x = frame["x"].GetInt();
+					int y = frame["y"].GetInt();
+					int w = frame["w"].GetInt();
+					int h = frame["h"].GetInt();
 
-				values.emplace_back(x,y,w,h);
+					values.emplace_back(x,y,w,h);
+					LOG(name);
+
+				}
+				if (frameValue.HasMember("spriteSourceSize") && frameValue["spriteSourceSize"].IsObject()) {
+					const rapidjson::Value& spriteSourceSize = frameValue["spriteSourceSize"];
+
+					int x = spriteSourceSize["x"].GetInt();
+					int y = spriteSourceSize["y"].GetInt();
+					int w = spriteSourceSize["w"].GetInt();
+					int h = spriteSourceSize["h"].GetInt();
 
 
-			}
-			if (frameValue.HasMember("spriteSourceSize") && frameValue["spriteSourceSize"].IsObject()) {
-				const rapidjson::Value& spriteSourceSize = frameValue["spriteSourceSize"];
+				}
+				if (frameValue.HasMember("sourceSize") && frameValue["sourceSize"].IsObject()) {
+					const rapidjson::Value& sourceSize = frameValue["spriteSourceSize"];
 
-				int x = spriteSourceSize["x"].GetInt();
-				int y = spriteSourceSize["y"].GetInt();
-				int w = spriteSourceSize["w"].GetInt();
-				int h = spriteSourceSize["h"].GetInt();
-
-
-			}
-			if (frameValue.HasMember("sourceSize") && frameValue["sourceSize"].IsObject()) {
-				const rapidjson::Value& sourceSize = frameValue["spriteSourceSize"];
-
-				int w = sourceSize["w"].GetInt();
-				int h = sourceSize["h"].GetInt();
-				m_Sprite->setOrigin(w / 2.f, h / 2.f);
+					int w = sourceSize["w"].GetInt();
+					int h = sourceSize["h"].GetInt();
+					m_Sprite->setOrigin(w / 2.f, h / 2.f);
+				}
 			}
 		}
 	}
 
 	m_Sprite->setScale(5.f,5.f);
-	m_Sprite->setTextureRect(values[0]);
+	m_Sprite->setTextureRect(values[5]);
 	m_Border = m_Sprite->getGlobalBounds();
 	m_Sprite->setPosition(250, 250);
 	m_Sprite->setRotation(0.0f);
@@ -87,7 +92,7 @@ void Player::initialize()
 	renderer->assignDrawable(m_Sprite);
 	attachComponent(renderer);
 
-	auto spriteAnimation = new SpriteChange("Charlie");
+	auto spriteAnimation = new LionAnimation("Charlie");
 	attachComponent(spriteAnimation);
 	
 	Core::PhysicsManager::getInstance()->trackObject(m_Collider);

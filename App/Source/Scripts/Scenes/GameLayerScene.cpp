@@ -36,14 +36,10 @@ void GameLayerScene::OnLoadObjects()
 	Core::PhysicsWorld::getInstance()->addEntity(player);
 
 	
-
 	auto support1 = new AirplaneSupport("support1");
 	player->attachChild(support1);
-	support1->setPosition(50, 100);
-
-	auto support2 = new AirplaneSupport("support2");
-	player->attachChild(support2);
-	support2->setPosition(-50, 100);
+	support1->setPosition(0, -100);
+	
 
 	auto enemiesManager = new Core::EmptyEntity("EnemiesManager");
 	auto swarmHandler = new EnemySwarmHandler(3, "swarmHandler", enemiesManager);
