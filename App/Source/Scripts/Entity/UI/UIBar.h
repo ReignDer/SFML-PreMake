@@ -16,6 +16,5 @@ public:
 
 	virtual void OnButtonClick(UIButton* button) override;
 	virtual void OnButtonReleased(UIButton* button) override;
-
 };
 

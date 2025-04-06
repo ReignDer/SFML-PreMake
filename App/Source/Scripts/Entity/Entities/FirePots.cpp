@@ -102,7 +102,16 @@ void FirePots::OnRelease()
 void FirePots::OnActivate()
 {
 	auto movement = (FirePotsMovement*)findComponentByName("FirePotsMovement");
-	movement->configure(rand() % 80);
+	if (movement->m_currentTicks >= 60.f)
+	{
+		movement->configure(rand() % 80);
+	}
+	else if (movement->m_currentTicks >= 180.f)
+	{
+		movement->configure(rand() % 60);
+	}
+	else
+		movement->configure(rand() % 100);
 	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
 	setPosition(Core::Core::Get().GetWindow().GetWidth(), 210);
 }

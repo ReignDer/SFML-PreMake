@@ -8,7 +8,7 @@ public:
     virtual void perform() override;
     void configure(float delay);
     void reset();
-
+    float m_currentTicks = 0.0f;
 private:
     const float SPEED = 200.f;
     

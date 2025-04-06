@@ -10,15 +10,19 @@ BigRingMovement::BigRingMovement(const std::string& name) : Core::AbstractCompon
 void BigRingMovement::perform()
 {
     m_Ticks += timestep.asSeconds();
-    
+    m_currentTicks += timestep.asSeconds();
     sf::Transformable* transform = getOwner()->getTransformable();
 
     if (m_Ticks > m_Delay)
     {
-        transform->move(-timestep.asSeconds() * (SPEED/2), 0);
+        int rnd = rand() % 100;
+        if (m_currentTicks >= 60.f && rnd > 80.f)
+            transform->move(-timestep.asSeconds() * (SPEED), 0);
+        else
+            transform->move(-timestep.asSeconds() * (SPEED/2), 0);
     }
 
-    if (transform->getPosition().x < -450)
+    if (transform->getPosition().x < -500)
     {
         ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::BIGRING_POOL_TAG)->releasePoolable((EntityPoolable*)this->getOwner());
     }

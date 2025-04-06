@@ -11,7 +11,7 @@ void FirePotAnimation::perform()
     auto atlas = static_cast<FirePots*>(getOwner());
     auto values = atlas->getValues();
     m_Ticks += timestep.asSeconds();
-    
+
     if (m_Ticks > 0.3f) {
         reset();
         currentIndex++;

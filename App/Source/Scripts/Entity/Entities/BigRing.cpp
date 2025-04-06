@@ -94,7 +94,16 @@ void BigRing::OnRelease()
 void BigRing::OnActivate()
 {
 	auto movement = (BigRingMovement*)findComponentByName("BigRingMovement");
-	movement->configure(rand() % 100);
+	if (movement->m_currentTicks >= 60.f)
+	{
+		movement->configure(rand() % 85);
+	}
+	else if (movement->m_currentTicks >= 180.f)
+	{
+		movement->configure(rand() % 60);
+	}
+	else
+		movement->configure(rand() % 100);
 	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
 	setPosition(Core::Core::Get().GetWindow().GetWidth(), 72);
 }

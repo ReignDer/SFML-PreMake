@@ -11,6 +11,9 @@ public:
 	virtual void perform() override;
 	void IncreaseRound();
 	void ResetRound();
+	float m_currentTicks = 0.0f;
+	bool stage2 = false;
+	bool stage3 = false;
 
 private:
 	UIText* text;

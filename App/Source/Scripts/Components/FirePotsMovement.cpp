@@ -10,7 +10,7 @@ FirePotsMovement::FirePotsMovement(const std::string& name) : Core::AbstractComp
 void FirePotsMovement::perform()
 {
     m_Ticks += timestep.asSeconds();
-    
+    m_currentTicks += timestep.asSeconds();
     sf::Transformable* transform = getOwner()->getTransformable();
 
     if (m_Ticks > m_Delay)
@@ -18,7 +18,7 @@ void FirePotsMovement::perform()
         transform->move(-timestep.asSeconds() * (SPEED/2), 0);
     }
 
-    if (transform->getPosition().x < -450)
+    if (transform->getPosition().x < -500)
     {
         ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::FIREPOT_POOL_TAG)->releasePoolable((EntityPoolable*)this->getOwner());
     }
