@@ -3,6 +3,7 @@
 #include "Scripts/Managers/TextureManager.h"
 #include "Scripts/Managers/SFXManager.h"
 #include "Scripts/Managers/GameManager.h"
+#include "Scripts/Components/UIComponents/HighScoreCounter.h"
 #include "UIButton.h"
 #include "UIText.h"
 class GameOverScreen : public Core::Entity, public IButtonListener

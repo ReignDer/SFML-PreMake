@@ -28,29 +28,33 @@ void GameOverScreen::initialize()
 
 	auto TextBox = new UIText("GameOverText");
 	attachChild(TextBox);
-	TextBox->setPosition(0, -50);
-	TextBox->setSize(50);
+	TextBox->setPosition(0, -150);
+	TextBox->setSize(70);
 	TextBox->setText("Game Over!");
 
 	auto HighScore = new UIText("HighScore");
 	attachChild(HighScore);
-	HighScore->setPosition(0, 0);
-	HighScore->setSize(30);
+	HighScore->setPosition(0, -60);
+	HighScore->setSize(40);
 	
 	std::string text2 = "High Score: \n";
-	int score = GameManager::getInstance()->getHighScore();
-	text2 += std::to_string(score);
+	int Highscore = GameManager::getInstance()->getHighScore();
+	text2 += std::to_string(Highscore);
 	HighScore->setText(text2);
 
 	auto Score = new UIText("Score");
 	attachChild(Score);
-	Score->setPosition(0, 50);
-	Score->setSize(20);
+	Score->setPosition(0, 35);
+	Score->setSize(35);
 
 	std::string text3 = "Score: \n";
-	score = GameManager::getInstance()->getPrevScore();
+	int score = GameManager::getInstance()->getPrevScore();
+	
 	text3 += std::to_string(score);
 	Score->setText(text3);
+
+	auto HighScoreCounter = new HIghScoreCounter("hsc", Score, HighScore);
+	attachComponent(HighScoreCounter);
 
 	setEnabled(false);
 
@@ -69,10 +73,6 @@ void GameOverScreen::initialize()
 	button1Text->setPosition(0, -20);
 	button1Text->setSize(100);
 	button1Text->setText("Quit");
-
-
-
- 
 }
 
 void GameOverScreen::OnButtonClick(UIButton* button)

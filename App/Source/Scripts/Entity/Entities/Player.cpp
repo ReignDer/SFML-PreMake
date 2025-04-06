@@ -104,14 +104,14 @@ void Player::OnCollisionEnter(Entity* entity)
 
 	if (entity->getName() == "BigRings") {
 		LOG(this->getPosition().y - entity->getPosition().y)
-		if (abs(this->getPosition().y - entity->getPosition().y) <= 7)
+		if (abs(this->getPosition().y - entity->getPosition().y) <= 3)
 			GameManager::getInstance()->increaseScore(100);
 		else 
 			GameManager::getInstance()->loseLife();
 	}
 
 	if (entity->getName() == "SmallRings") {
-		if (abs(this->getPosition().y + 2 - entity->getPosition().y) <= 5)
+		if (abs(this->getPosition().y + 2 - entity->getPosition().y) <= 0.5)
 			GameManager::getInstance()->increaseScore(200);
 		else
 			GameManager::getInstance()->loseLife();

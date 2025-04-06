@@ -16,22 +16,33 @@ void GameManager::loseGame() {
 	this->resetStats();
 
 	SFXManager::getInstance()->stop();
+	Core::Core::Get().PauseApplication();
+	
 	if (Core::SceneManager::getInstance()->isSceneLoaded(Core::SceneManager::GAME_SCENE_NAME))
 	Core::EntityManager::getInstance()->findObjectByName("GameOverScreen")->setEnabled(true);
 }
 
 void GameManager::resetStats() {
 	int HighScore;
+	std::string temp;
+	this->prevScore = score;
+	this->life = 3;
 
-	std::fstream file("HighScore.txt");
-	file >> HighScore;
+	std::fstream file("Source/Scripts/managers/HighScore.txt");
+
+	if (!file.is_open()) {
+		std::cout << "Error opening the file!";
+		return;
+	}
+
+	std::getline(file, temp);
+	HighScore = std::stoi(temp);
 
 	if (this->score > HighScore)
-		file << score;
+		file << std::to_string(score);
 
-	this->prevScore = score;
 	this->score = 0;
-	this->life = 3;
+	file.close();
 }
 
 int GameManager::getLife() {
@@ -48,10 +59,19 @@ int GameManager::getPrevScore() {
 
 int GameManager::getHighScore() {
 	int HighScore;
+	std::string temp;
 
-	std::fstream file("HighScore.txt");
-	file >> HighScore;
+	std::ifstream file("Source/Scripts/managers/HighScore.txt");
 
+	if (!file.is_open()) {
+		std::cout << "Error opening the file!";
+		return 0;
+	}
+
+	std::getline(file, temp);
+	HighScore = std::stoi(temp);
+
+	file.close();
 	return HighScore;
 }
 
