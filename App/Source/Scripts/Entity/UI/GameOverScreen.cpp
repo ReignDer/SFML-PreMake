@@ -16,7 +16,7 @@ void GameOverScreen::initialize()
 	m_Sprite->setOrigin(textureSize.x/2, textureSize.y / 2);
 	m_Sprite->setScale(0.35, 0.3);
 
-	auto renderer = new Core::RendererComponent("MainMenuScreen");
+	auto renderer = new Core::RendererComponent("GameOverScene");
 	renderer->assignDrawable(m_Sprite);
 	attachComponent(renderer);
 
@@ -26,13 +26,13 @@ void GameOverScreen::initialize()
 	setPosition(posX, posY);
 	this->m_Transformable.setScale(sf::Vector2f(0.7f,0.7f));
 
-	auto TextBox = new UIText("text_1");
+	auto TextBox = new UIText("GameOverText");
 	attachChild(TextBox);
 	TextBox->setPosition(0, -50);
 	TextBox->setSize(50);
 	TextBox->setText("Game Over!");
 
-	auto HighScore = new UIText("text_2");
+	auto HighScore = new UIText("HighScore");
 	attachChild(TextBox);
 	TextBox->setPosition(0, 0);
 	TextBox->setSize(30);
@@ -42,7 +42,7 @@ void GameOverScreen::initialize()
 	text2 += std::to_string(score);
 	TextBox->setText(text2);
 
-	auto Score = new UIText("text_3");
+	auto Score = new UIText("Score");
 	attachChild(TextBox);
 	TextBox->setPosition(0, 50);
 	TextBox->setSize(20);
@@ -58,7 +58,7 @@ void GameOverScreen::initialize()
 
 	std::shared_ptr<sf::Texture> pressedButton = TextureManager::getInstance()->getTexture("b_5");
 
-	auto button1 = new UIButton("button_1",normalButton, pressedButton);
+	auto button1 = new UIButton("QuitGameOver",normalButton, pressedButton);
 	attachChild(button1);
 	button1->setPosition(0,120);
 	button1->getTransformable()->setScale(0.3f,0.3f);
@@ -82,7 +82,7 @@ void GameOverScreen::OnButtonClick(UIButton* button)
 
 void GameOverScreen::OnButtonReleased(UIButton* button)
 {
-	if (button->getName() == "button_1") {
+	if (button->getName() == "QuitGameOver") {
 		Core::SceneManager::getInstance()->loadScene(Core::SceneManager::TITLE_SCENE_NAME);
 		setEnabled(false);
 	}
