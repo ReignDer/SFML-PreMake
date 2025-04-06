@@ -37,20 +37,20 @@ void GameOverScreen::initialize()
 	TextBox->setPosition(0, 0);
 	TextBox->setSize(30);
 	
-	std::string text = "High Score: \n";
+	std::string text2 = "High Score: \n";
 	int score = GameManager::getInstance()->getHighScore();
-	text += std::to_string(score);
-	TextBox->setText(text);
+	text2 += std::to_string(score);
+	TextBox->setText(text2);
 
 	auto Score = new UIText("text_3");
 	attachChild(TextBox);
 	TextBox->setPosition(0, 50);
 	TextBox->setSize(20);
 
-	std::string text = "Score: \n";
+	std::string text3 = "Score: \n";
 	score = GameManager::getInstance()->getPrevScore();
-	text += std::to_string(score);
-	TextBox->setText(text);
+	text3 += std::to_string(score);
+	TextBox->setText(text3);
 
 	setEnabled(false);
 
