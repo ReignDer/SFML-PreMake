@@ -55,6 +55,9 @@ void GameLayerScene::OnLoadObjects()
 	auto menu = new MainMenuScreen("MainMenuScreen");
 	registerEntity(menu);
 
+	auto gameOver = new GameOverScreen("GameOverScreen");
+	registerEntity(gameOver);
+
 	auto BGMplayer = new Core::EmptyEntity("BGMplayer");
 	auto BGMhandler = new BGMHandler("BGMhandler");
 	BGMplayer->attachComponent(BGMhandler);

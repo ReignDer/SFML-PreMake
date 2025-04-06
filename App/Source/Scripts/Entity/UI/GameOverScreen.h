@@ -5,11 +5,11 @@
 #include "Scripts/Managers/GameManager.h"
 #include "UIButton.h"
 #include "UIText.h"
-class MainMenuScreen : public Core::Entity, public IButtonListener
+class GameOverScreen : public Core::Entity, public IButtonListener
 {
 public:
-	MainMenuScreen(const std::string& name);
-	virtual ~MainMenuScreen();
+	GameOverScreen(const std::string& name);
+	virtual ~GameOverScreen();
 	virtual void initialize() override;
 	virtual void OnButtonClick(UIButton* button) override;
 	virtual void OnButtonReleased(UIButton* button) override;

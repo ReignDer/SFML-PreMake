@@ -4,6 +4,7 @@
 #include  "Scripts/Entity/Entities.h"
 #include  "Scripts/Components/AppComponent.h"
 #include  "Scripts/Components/BGMHandler.h"
+#include  "Scripts/Entity/UI/GameOverScreen.h"
 
 class GameLayerScene : public Core::AbstractScene
 {

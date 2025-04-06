@@ -1,14 +1,14 @@
-#include "MainMenuScreen.h"
+#include "GameOverScreen.h"
 
-MainMenuScreen::MainMenuScreen(const std::string& name) : Core::Entity(name), IButtonListener()
+GameOverScreen::GameOverScreen(const std::string& name) : Core::Entity(name), IButtonListener()
 {
 }
 
-MainMenuScreen::~MainMenuScreen()
+GameOverScreen::~GameOverScreen()
 {
 }
 
-void MainMenuScreen::initialize()
+void GameOverScreen::initialize()
 {
 	m_Sprite = std::make_shared<sf::Sprite>();
 	m_Sprite->setTexture(*TextureManager::getInstance()->getTexture("PopUP"));
@@ -30,7 +30,27 @@ void MainMenuScreen::initialize()
 	attachChild(TextBox);
 	TextBox->setPosition(0, -50);
 	TextBox->setSize(50);
-	TextBox->setText("Are you sure \n \tyou want to\n \t quit the game?");
+	TextBox->setText("Game Over!");
+
+	auto HighScore = new UIText("text_2");
+	attachChild(TextBox);
+	TextBox->setPosition(0, 0);
+	TextBox->setSize(30);
+	
+	std::string text = "High Score: \n";
+	int score = GameManager::getInstance()->getHighScore();
+	text += std::to_string(score);
+	TextBox->setText(text);
+
+	auto Score = new UIText("text_3");
+	attachChild(TextBox);
+	TextBox->setPosition(0, 50);
+	TextBox->setSize(20);
+
+	std::string text = "Score: \n";
+	score = GameManager::getInstance()->getPrevScore();
+	text += std::to_string(score);
+	TextBox->setText(text);
 
 	setEnabled(false);
 
@@ -40,7 +60,7 @@ void MainMenuScreen::initialize()
 
 	auto button1 = new UIButton("button_1",normalButton, pressedButton);
 	attachChild(button1);
-	button1->setPosition(-150,120);
+	button1->setPosition(0,120);
 	button1->getTransformable()->setScale(0.3f,0.3f);
 	button1->setButtonListener(this);
 
@@ -48,38 +68,22 @@ void MainMenuScreen::initialize()
 	button1->attachChild(button1Text);
 	button1Text->setPosition(0, -20);
 	button1Text->setSize(100);
-	button1Text->setText("YES");
-
-	auto button2 = new UIButton("button_2", normalButton, pressedButton);
-	attachChild(button2);
-	button2->setPosition(150, 120);
-	button2->getTransformable()->setScale(0.3f, 0.3f);
-	button2->setButtonListener(this);
-
-	auto button2Text =  new UIText("text_2");
-	button2->attachChild(button2Text);
-	button2Text->setPosition(0, -20);
-	button2Text->setSize(100);
-	button2Text->setText("NO");
+	button1Text->setText("Quit");
 
 
 
  
 }
 
-void MainMenuScreen::OnButtonClick(UIButton* button)
+void GameOverScreen::OnButtonClick(UIButton* button)
 {
 	SFXManager::getInstance()->play("Click");
 }
 
-void MainMenuScreen::OnButtonReleased(UIButton* button)
+void GameOverScreen::OnButtonReleased(UIButton* button)
 {
 	if (button->getName() == "button_1") {
-		GameManager::getInstance()->loseGame();
-		Core::SceneManager::getInstance()->loadScene(Core::SceneManager::TITLE_SCENE_NAME);
-	}
-	if (button->getName() == "button_2") {
-		Core::Core::Get().ResumeApplication();
 		setEnabled(false);
+		Core::SceneManager::getInstance()->loadScene(Core::SceneManager::TITLE_SCENE_NAME);
 	}
 }

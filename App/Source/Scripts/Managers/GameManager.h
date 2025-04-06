@@ -10,13 +10,17 @@ public:
 	void increaseScore(int score);
 	void loseLife();
 	void loseGame();
+	void resetStats();
 
 	int getLife();
 	int getScore();
+	int getPrevScore();
+	int getHighScore();
 
 private:
 	int life = 3;
 	int score = 0;
+	int prevScore = 0;
 
 public:
 	static GameManager* getInstance();
