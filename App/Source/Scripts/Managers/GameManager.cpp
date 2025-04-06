@@ -28,21 +28,25 @@ void GameManager::resetStats() {
 	this->prevScore = score;
 	this->life = 3;
 
-	std::fstream file("Source/Scripts/managers/HighScore.txt");
+	std::ifstream outputFile("Source/Scripts/managers/HighScore.txt");
 
-	if (!file.is_open()) {
+	if (!outputFile.is_open()) {
 		std::cout << "Error opening the file!";
 		return;
 	}
 
-	std::getline(file, temp);
+	std::getline(outputFile, temp);
 	HighScore = std::stoi(temp);
+	outputFile.close();
 
-	if (this->score > HighScore)
-		file << std::to_string(score);
+	std::ofstream inputFile("Source/Scripts/managers/HighScore.txt", std::ofstream::trunc);
+	if (this->score > HighScore) {
+		std::cout << "hello" << std::endl;
+		inputFile << std::to_string(score);
+	}
 
 	this->score = 0;
-	file.close();
+	inputFile.close();
 }
 
 int GameManager::getLife() {
