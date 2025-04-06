@@ -53,6 +53,8 @@ void TitleScreen::initialize()
 	button2Text->setPosition(0, -20);
 	button2Text->setSize(100);
 	button2Text->setText("QUIT");
+
+	SFXManager::getInstance()->stop();
 }
 
 void TitleScreen::OnButtonClick(UIButton* button)
@@ -63,7 +65,6 @@ void TitleScreen::OnButtonClick(UIButton* button)
 void TitleScreen::OnButtonReleased(UIButton* button)
 {
 	if (button->getName() == "button_1") {
-		SFXManager::getInstance()->play("Applause");
 		LOG("CLICK");
 		Core::Core::Get().ResumeApplication();
 		Core::SceneManager::getInstance()->loadScene(Core::SceneManager::GAME_SCENE_NAME);

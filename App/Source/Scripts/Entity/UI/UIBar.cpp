@@ -28,7 +28,7 @@ void UIBar::initialize()
 
 	auto button1 = new UIButton("button_1", normalButton, pressedButton);
 	attachChild(button1);
-	button1->setPosition(160, posY * 8);
+	button1->setPosition(250, posY * 8.5);
 	button1->getTransformable()->setScale(0.18f, 0.18f);
 	button1->setButtonListener(this);
 

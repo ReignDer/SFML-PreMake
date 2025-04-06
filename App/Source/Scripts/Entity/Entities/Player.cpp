@@ -103,21 +103,20 @@ void Player::OnCollisionEnter(Entity* entity)
 	//std::cout << this->name << " Collided with " << entity->getName() << std::endl;
 
 	if (entity->getName() == "BigRings") {
-		if (abs(this->getPosition().y - entity->getPosition().y) >= 5)
+		if (abs(this->getPosition().y - entity->getPosition().y) >= 7)
 			GameManager::getInstance()->increaseScore(100);
 		else 
 			GameManager::getInstance()->loseLife();
 	}
 
 	if (entity->getName() == "SmallRings") {
-		if (abs(this->getPosition().y + 2 - entity->getPosition().y) >= 3)
+		if (abs(this->getPosition().y + 2 - entity->getPosition().y) >= 5)
 			GameManager::getInstance()->increaseScore(200);
 		else
 			GameManager::getInstance()->loseLife();
 	}
 
 	if (entity->getName() == "FirePots") {
-		SFXManager::getInstance()->play("Hit");
 		GameManager::getInstance()->loseLife();
 	}
 

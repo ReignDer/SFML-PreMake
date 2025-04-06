@@ -27,6 +27,7 @@ void SFXManager::loadAll()
     loadSFX("Applause", "Media/SFX/Applause.wav");
     loadSFX("Hit", "Media/SFX/Hit.wav");
     loadSFX("Click", "Media/SFX/Click.wav");
+    loadSFX("BGM", "Media/SFX/BGM.wav");
 }
 
 void SFXManager::loadSFX(std::string key, std::string path)
@@ -50,6 +51,7 @@ void SFXManager::play(std::string key)
     //if(SFX_map[key]->getStatus() != sf::Sound::Playing)
         SFX_map[key]->play();
 
+    /*
     switch (SFX_map[key]->getStatus()) {
     case sf::Sound::Playing:
         std::cout << "Playing" << std::endl;
@@ -60,9 +62,32 @@ void SFXManager::play(std::string key)
     case sf::Sound::Stopped:
         std::cout << "Stopped" << std::endl;
         break;
-    }
+    } 
+    */
+}
 
-    
+void SFXManager::play()
+{
+    std::string key = "BGM";
+    if (SFX_map[key] == nullptr) return;
+
+    if(SFX_map[key]->getStatus() != sf::Sound::Playing)
+        SFX_map[key]->play();
+}
+
+void SFXManager::pause()
+{
+    std::string key = "BGM";
+    if (SFX_map[key] == nullptr) return;
+    SFX_map[key]->pause();
+}
+
+
+void SFXManager::stop()
+{
+    std::string key = "BGM";
+    if (SFX_map[key] == nullptr) return;
+    SFX_map[key]->stop();
 }
 
 

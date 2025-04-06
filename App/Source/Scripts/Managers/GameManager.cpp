@@ -5,6 +5,7 @@ void GameManager::increaseScore(int score) {
 }
 
 void GameManager::loseLife() {
+	SFXManager::getInstance()->play("Hit");
 	this->life--;
 	if (life <= 0) this->loseGame();
 }
@@ -21,6 +22,7 @@ void GameManager::loseGame() {
 	this->score = 0;
 	this->life = 3;
 
+	SFXManager::getInstance()->stop();
 	Core::SceneManager::getInstance()->loadScene(Core::SceneManager::TITLE_SCENE_NAME);
 }
 

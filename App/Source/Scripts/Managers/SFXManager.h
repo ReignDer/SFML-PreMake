@@ -7,6 +7,9 @@ public:
 	static SFXManager* getInstance();
 	void loadAll();
 	void play(std::string key);
+	void play();
+	void pause();
+	void stop();
 	void deleteResources();
 
 

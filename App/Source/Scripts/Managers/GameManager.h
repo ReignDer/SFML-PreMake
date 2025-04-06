@@ -2,6 +2,7 @@
 
 #include "Builder.h"
 #include <SFML/Graphics.hpp>
+#include "Scripts/Managers/SFXManager.h"
 
 class GameManager
 {
