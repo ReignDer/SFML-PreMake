@@ -41,9 +41,10 @@ void GameManager::resetStats() {
 
 	std::ofstream inputFile("Source/Scripts/managers/HighScore.txt", std::ofstream::trunc);
 	if (this->score > HighScore) {
-		std::cout << "hello" << std::endl;
 		inputFile << std::to_string(score);
 	}
+	else
+		inputFile << std::to_string(HighScore);
 
 	this->score = 0;
 	inputFile.close();
