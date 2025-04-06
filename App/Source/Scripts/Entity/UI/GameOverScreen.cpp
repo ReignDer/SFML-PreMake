@@ -83,7 +83,7 @@ void GameOverScreen::OnButtonClick(UIButton* button)
 void GameOverScreen::OnButtonReleased(UIButton* button)
 {
 	if (button->getName() == "button_1") {
-		setEnabled(false);
 		Core::SceneManager::getInstance()->loadScene(Core::SceneManager::TITLE_SCENE_NAME);
+		setEnabled(false);
 	}
 }

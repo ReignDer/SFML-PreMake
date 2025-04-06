@@ -75,8 +75,9 @@ void MainMenuScreen::OnButtonClick(UIButton* button)
 void MainMenuScreen::OnButtonReleased(UIButton* button)
 {
 	if (button->getName() == "button_1") {
-		GameManager::getInstance()->loseGame();
 		Core::SceneManager::getInstance()->loadScene(Core::SceneManager::TITLE_SCENE_NAME);
+		GameManager::getInstance()->resetStats();
+		SFXManager::getInstance()->stop();
 	}
 	if (button->getName() == "button_2") {
 		Core::Core::Get().ResumeApplication();

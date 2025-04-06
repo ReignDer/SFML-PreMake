@@ -10,6 +10,8 @@ void BGMHandler::perform()
 		SFXManager::getInstance()->stop();
 	else if (Core::EntityManager::getInstance()->findObjectByName("MainMenuScreen")->isEnabled())
 		SFXManager::getInstance()->pause();
+	else if (Core::EntityManager::getInstance()->findObjectByName("GameOverScreen")->isEnabled())
+		SFXManager::getInstance()->pause();
 	else
 		SFXManager::getInstance()->play();
 }

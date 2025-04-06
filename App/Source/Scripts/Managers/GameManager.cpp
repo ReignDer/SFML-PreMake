@@ -16,6 +16,7 @@ void GameManager::loseGame() {
 	this->resetStats();
 
 	SFXManager::getInstance()->stop();
+	if (Core::SceneManager::getInstance()->isSceneLoaded(Core::SceneManager::GAME_SCENE_NAME))
 	Core::EntityManager::getInstance()->findObjectByName("GameOverScreen")->setEnabled(true);
 }
 
