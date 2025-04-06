@@ -25,7 +25,6 @@ void SFXManager::loadAll()
 {
     loadSFX("Jump", "Media/SFX/Jump.wav");
     loadSFX("Applause", "Media/SFX/Applause.wav");
-    loadSFX("Quit", "Media/SFX/Quit.wav");
     loadSFX("Hit", "Media/SFX/Hit.wav");
     loadSFX("Click", "Media/SFX/Click.wav");
 }
@@ -48,7 +47,7 @@ void SFXManager::play(std::string key)
 {
     if (SFX_map[key] == nullptr) return;
 
-    if(SFX_map[key]->getStatus() != sf::Sound::Playing)
+    //if(SFX_map[key]->getStatus() != sf::Sound::Playing)
         SFX_map[key]->play();
 
     switch (SFX_map[key]->getStatus()) {

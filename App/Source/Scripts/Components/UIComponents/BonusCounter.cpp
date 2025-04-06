@@ -8,12 +8,19 @@ BonusCounter::BonusCounter(std::string name, UIText* text) : AbstractComponent(n
 void BonusCounter::perform()
 {
 	ticks += timestep.asSeconds();
-	std::string string = "BONUS-";
+	std::string string = "TIME-";
 
-	bonus = 5000 - int(ticks * 4) * 10;
-	if (bonus <= 0) bonus = 0;
+	int temp;
+	temp = int(ticks) / 60;
+	ticks -= temp * 60;
+	minutes += temp;
 
-	string += std::to_string(bonus);
+	if (minutes < 10) string += "0";
+	string += std::to_string(minutes);
+	string += ":";
+
+	if (temp = ticks < 10) string += "0";
+	string += std::to_string(int(ticks));
 
 	this->text->setText(string);
 }

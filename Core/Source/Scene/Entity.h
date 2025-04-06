@@ -31,6 +31,8 @@ namespace Core{
 		void setPosition(float x, float y);
 		void setSprite(const sf::IntRect& rect);
 
+		sf::Vector2f getPosition();
+
 	public:
 		////TODO: Call scene registry to check entity if it has the component
 		//template<typename T>

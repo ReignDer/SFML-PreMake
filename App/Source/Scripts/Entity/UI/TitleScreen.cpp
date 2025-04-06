@@ -1,4 +1,5 @@
 #include "TitleScreen.h"
+#include<dos.h>   //for delay()
 
 TitleScreen::TitleScreen(const std::string& name) : Core::Entity(name) , IButtonListener()
 {
@@ -56,6 +57,7 @@ void TitleScreen::initialize()
 
 void TitleScreen::OnButtonClick(UIButton* button)
 {
+	SFXManager::getInstance()->play("Click");
 }
 
 void TitleScreen::OnButtonReleased(UIButton* button)
@@ -67,7 +69,6 @@ void TitleScreen::OnButtonReleased(UIButton* button)
 		Core::SceneManager::getInstance()->loadScene(Core::SceneManager::GAME_SCENE_NAME);
 	}
 	if (button->getName() == "button_2") {
-		SFXManager::getInstance()->play("Quit");
 		Core::Core::Get().ApplicationQuit();
 	}
 }

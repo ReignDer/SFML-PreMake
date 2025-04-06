@@ -1,10 +1,10 @@
 #include "Player.h"
 
 #include <algorithm>
+#include <cmath>
 
 #include "Scripts/Components/LionAnimation.h"
 #include "Scripts/Components/SpriteChange.h"
-
 
 Player::Player(std::string name) : Core::Entity(name), CollisionListener()
 {
@@ -100,6 +100,27 @@ void Player::initialize()
 
 void Player::OnCollisionEnter(Entity* entity)
 {
+	//std::cout << this->name << " Collided with " << entity->getName() << std::endl;
+
+	if (entity->getName() == "BigRings") {
+		if (abs(this->getPosition().y - entity->getPosition().y) >= 5)
+			GameManager::getInstance()->increaseScore(100);
+		else 
+			GameManager::getInstance()->loseLife();
+	}
+
+	if (entity->getName() == "SmallRings") {
+		if (abs(this->getPosition().y + 2 - entity->getPosition().y) >= 3)
+			GameManager::getInstance()->increaseScore(200);
+		else
+			GameManager::getInstance()->loseLife();
+	}
+
+	if (entity->getName() == "FirePots") {
+		SFXManager::getInstance()->play("Hit");
+		GameManager::getInstance()->loseLife();
+	}
+
 	if (entity->getName().find("Floor") != std::string::npos)
 	{
 		m_ColliderActive = true;

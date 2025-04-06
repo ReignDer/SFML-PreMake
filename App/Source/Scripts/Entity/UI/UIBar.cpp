@@ -44,7 +44,7 @@ void UIBar::initialize()
 	attachChild(scoreText);
 	scoreText->setPosition(-150, 0);
 	scoreText->setSize(20);
-	scoreText->setText("1P-000000");
+	scoreText->setText("SCORE-00000");
 
 	auto scoreCounter = new ScoreCounter("scc", scoreText);
 	attachComponent(scoreCounter);
@@ -53,7 +53,7 @@ void UIBar::initialize()
 	attachChild(bonusText);
 	bonusText->setPosition(0, 0);
 	bonusText->setSize(20);
-	bonusText->setText("BONUS-5000");
+	bonusText->setText("TIME-00:00");
 
 	auto bonusCounter = new BonusCounter("bc", bonusText);
 	attachComponent(bonusCounter);

@@ -58,13 +58,12 @@ void GameLayerScene::OnLoadObjects()
 	auto obstacleHandler = new ObstacleHandler("ObstacleHander", 5, obstacleManager);
 	obstacleManager->attachComponent(obstacleHandler);
 	registerEntity(obstacleManager);
-	
+
 	auto uiBar = new UIBar("Bar");
 	registerEntity(uiBar);
 
 	auto menu = new MainMenuScreen("MainMenuScreen");
 	registerEntity(menu);
-	
 }
 
 void GameLayerScene::OnUnloadResources()

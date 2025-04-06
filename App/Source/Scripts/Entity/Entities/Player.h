@@ -1,6 +1,7 @@
 #pragma once
 #include "Builder.h"
 #include "Scripts/Managers/TextureManager.h"
+#include "Scripts/Managers/GameManager.h"
 #include "Scripts/Components/AirplaneSupportMovement.h"
 #include "Scripts/Components/PlayerInputController.h"
 
@@ -15,6 +16,7 @@ public:
 	void OnCollisionStay(Entity* entity) override;
 	bool m_ColliderActive = false;
 	std::vector<sf::IntRect> getValues() { return values; }
+
 private:
 	float m_PlayerSpeed = 300.f;
 	Core::ColliderComponent* m_Collider = nullptr;

@@ -232,4 +232,8 @@ namespace Core {
 		m_AccumulatedForce = sf::Vector2f(0,0);
 		m_Acceleration = sf::Vector2f(0,0);
 	}
+
+	sf::Vector2f Entity::getPosition() {
+		return this->m_Position;
+	}
 }

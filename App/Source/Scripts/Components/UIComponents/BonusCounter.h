@@ -13,7 +13,7 @@ public:
 
 private:
 	UIText* text;
-	int bonus = 5000;
+	int minutes = 0;
 	float ticks = 0;
 };
 
