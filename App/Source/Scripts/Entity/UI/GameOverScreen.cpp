@@ -33,24 +33,24 @@ void GameOverScreen::initialize()
 	TextBox->setText("Game Over!");
 
 	auto HighScore = new UIText("HighScore");
-	attachChild(TextBox);
-	TextBox->setPosition(0, 0);
-	TextBox->setSize(30);
+	attachChild(HighScore);
+	HighScore->setPosition(0, 0);
+	HighScore->setSize(30);
 	
 	std::string text2 = "High Score: \n";
 	int score = GameManager::getInstance()->getHighScore();
 	text2 += std::to_string(score);
-	TextBox->setText(text2);
+	HighScore->setText(text2);
 
 	auto Score = new UIText("Score");
-	attachChild(TextBox);
-	TextBox->setPosition(0, 50);
-	TextBox->setSize(20);
+	attachChild(Score);
+	Score->setPosition(0, 50);
+	Score->setSize(20);
 
 	std::string text3 = "Score: \n";
 	score = GameManager::getInstance()->getPrevScore();
 	text3 += std::to_string(score);
-	TextBox->setText(text3);
+	Score->setText(text3);
 
 	setEnabled(false);
 
@@ -84,6 +84,5 @@ void GameOverScreen::OnButtonReleased(UIButton* button)
 {
 	if (button->getName() == "QuitGameOver") {
 		Core::SceneManager::getInstance()->loadScene(Core::SceneManager::TITLE_SCENE_NAME);
-		setEnabled(false);
 	}
 }
