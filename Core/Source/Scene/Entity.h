@@ -34,20 +34,6 @@ namespace Core{
 		sf::Vector2f getPosition();
 
 	public:
-		////TODO: Call scene registry to check entity if it has the component
-		//template<typename T>
-		//bool HasComponent(){
-		//	return;//
-		//}
-		//template<typename T>
-		//bool GetComponent() {
-		//	return;//
-		//}
-
-		//template<typename T>
-		//bool AddComponent() {
-		//	return;//
-		//}
 
 		void attachComponent(AbstractComponent*  component);
 		void dettachComponent(AbstractComponent*  component);
@@ -72,6 +58,7 @@ namespace Core{
 		bool hasGravity = false;
 		std::shared_ptr<sf::Sprite> m_Sprite;
 		sf::FloatRect m_Border;
+		sf::Vector2f m_AccumulatedForce;
 		void resetForce();
 	
 	protected:
@@ -80,7 +67,7 @@ namespace Core{
 		void UpdateVelocity(const sf::Time& timestep);
 		
 
-		sf::Vector2f m_AccumulatedForce;
+
 		
 
 	protected:

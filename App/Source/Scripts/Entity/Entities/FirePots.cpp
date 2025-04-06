@@ -70,12 +70,20 @@ void FirePots::initialize()
 	m_Sprite->setPosition(500, 200);
 	m_Sprite->setRotation(0.0f);
 	
+	sf::FloatRect border = m_Sprite->getGlobalBounds();
+	border.width *= 0.3f;
+	border.height *= 0.3f;
+	sf::RectangleShape rectangles;
+	rectangles.setOrigin(m_Sprite->getOrigin());
+	rectangles.setPosition(m_Sprite->getPosition());
+	rectangles.setSize({border.width,border.height});
+	
 	auto renderer = new Core::RendererComponent("FirePotsRenderer");
 	renderer->assignDrawable(m_Sprite);
 	attachComponent(renderer);
 	
 	m_Collider = new Core::ColliderComponent("Collider");
-	m_Collider->setLocalBounds(m_Sprite->getGlobalBounds());
+	m_Collider->setLocalBounds(rectangles.getGlobalBounds());
 	m_Collider->setCollisionListener(this);
 	attachComponent(m_Collider);
 
@@ -94,7 +102,7 @@ void FirePots::OnRelease()
 void FirePots::OnActivate()
 {
 	auto movement = (FirePotsMovement*)findComponentByName("FirePotsMovement");
-	movement->configure(rand() % 50);
+	movement->configure(rand() % 80);
 	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
 	setPosition(Core::Core::Get().GetWindow().GetWidth(), 210);
 }

@@ -35,17 +35,17 @@ namespace Core
         //LOG(contactNormal.y);
         if (entity[0]->moveable) {
              sf::Vector2f P_a = moveByMass * ((float)1 / entity[0]->m_Mass);
-            entity[1]->m_Position = {0,0};
-            entity[1]->m_Velocity = {0,0};
+            entity[0]->m_Position = {0,0};
+            entity[0]->m_Velocity = {0,0};
         }
 
         if (entity[1] && entity[1]->moveable) {
             sf::Vector2f P_b = moveByMass * (-(float)1 / entity[1]->m_Mass);
             //LOG(P_b.y);
-            
+            entity[1]->m_Velocity = {0,0};
             entity[1]->m_Position = {0,0};
            
-            entity[1]->m_Velocity = {0,0};
+            
         }
         depth = 0;
     }

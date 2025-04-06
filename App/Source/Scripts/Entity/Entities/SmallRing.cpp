@@ -95,7 +95,7 @@ void SmallRing::OnRelease()
 void SmallRing::OnActivate()
 {
 	auto movement = (SmallRingMovement*)findComponentByName("SmallRingMovement");
-	movement->configure(rand() % 50);
+	movement->configure(rand() % 100);
 	Core::PhysicsManager::getInstance()->trackObject(m_Collider);
 	setPosition(Core::Core::Get().GetWindow().GetWidth(), 150);
 }

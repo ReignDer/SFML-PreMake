@@ -30,7 +30,6 @@ namespace Core
     void PhysicsWorld::GetOverlaps()
     {
         if (m_Entities.empty()) {
-            LOG("NO ENTITIES FOUND");
             return; // Exit early if there are no entities
         }
         for (int i = 0; i < m_Entities.size() - 1; i++) {

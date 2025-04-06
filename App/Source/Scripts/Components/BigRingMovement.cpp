@@ -17,7 +17,7 @@ void BigRingMovement::perform()
     {
         transform->move(-timestep.asSeconds() * (SPEED/2), 0);
     }
-    LOG(transform->getPosition().x);
+
     if (transform->getPosition().x < -450)
     {
         ObjectPoolHolder::getInstance()->getPool(ObjectPoolHolder::BIGRING_POOL_TAG)->releasePoolable((EntityPoolable*)this->getOwner());

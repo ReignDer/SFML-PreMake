@@ -211,6 +211,7 @@ namespace Core {
 	void Entity::addForce(sf::Vector2f vector2)
 	{
 		m_AccumulatedForce += vector2;
+		LOG(m_AccumulatedForce.y);
 	}
 
 	void Entity::UpdatePosition(const sf::Time& timestep)

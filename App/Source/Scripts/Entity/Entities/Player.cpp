@@ -103,14 +103,15 @@ void Player::OnCollisionEnter(Entity* entity)
 	//std::cout << this->name << " Collided with " << entity->getName() << std::endl;
 
 	if (entity->getName() == "BigRings") {
-		if (abs(this->getPosition().y - entity->getPosition().y) >= 7)
+		LOG(this->getPosition().y - entity->getPosition().y)
+		if (abs(this->getPosition().y - entity->getPosition().y) <= 7)
 			GameManager::getInstance()->increaseScore(100);
 		else 
 			GameManager::getInstance()->loseLife();
 	}
 
 	if (entity->getName() == "SmallRings") {
-		if (abs(this->getPosition().y + 2 - entity->getPosition().y) >= 5)
+		if (abs(this->getPosition().y + 2 - entity->getPosition().y) <= 5)
 			GameManager::getInstance()->increaseScore(200);
 		else
 			GameManager::getInstance()->loseLife();
@@ -140,7 +141,7 @@ void Player::OnCollisionStay(Entity* entity)
 {
 	if (entity->getName().find("Floor") != std::string::npos)
 	{
-		m_ColliderActive = true;
+		//m_ColliderActive = true;
 		//m_Velocity.y = 0.0f;
 		//m_Acceleration.y = 0.0f;
 		//float overlap = this->m_Transformable.getPosition().y + this->m_Border.height - entity->m_Position.y;
