@@ -21,7 +21,6 @@ void SmallRingMovement::perform()
             transform->move(-timestep.asSeconds() * (SPEED), 0);
         else
             transform->move(-timestep.asSeconds() * (SPEED/2), 0);
-        transform->move(-timestep.asSeconds() * (SPEED/2), 0);
     }
 
     if (transform->getPosition().x < -500)
